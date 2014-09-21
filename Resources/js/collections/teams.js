@@ -1,16 +1,14 @@
 define('teams',[
-  'underscore',
-  'backbone',
   'team'
-],function(_, Backbone, Team){
+],function(Team){
 
-    var Teams = Backbone.Collection.extend({
-      model:Team,
-      getTeam:function(idx){
-        return this.model[idx];
-      }
-    });
+  var Teams = Backbone.Collection.extend({
+    model:Team,
+    getTeam:function(idx){
+      return this.model[idx];
+    }
+  });
 
-    return Teams;
-  }
+  return Teams;
+}
 );

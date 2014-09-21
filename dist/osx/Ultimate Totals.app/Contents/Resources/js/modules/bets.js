@@ -1,9 +1,7 @@
 define('bets',[
-  'jquery',
   'app',
   'utils',
-  'backbone'
-],function($, app, utils, Backbone){
+],function(app, utils){
 
     return bets = {
       name:'bets',

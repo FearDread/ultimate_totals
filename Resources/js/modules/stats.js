@@ -1,9 +1,7 @@
 define('stats',[
-  'jquery',
   'app',
   'utils',
-  'stats_view'
-],function($, app, utils, stats_view){
+],function(app, utils){
 
     return stats = {
       name:'stats',

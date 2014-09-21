@@ -8,8 +8,9 @@ define('app',[
   'router',
   'team',
   'teams',
-  'utils'
-],function(Router, Team, Teams, utils){
+  'utils',
+  'table'
+],function(Router, Team, Teams, utils, table){
 
     return app = {
       document:document,

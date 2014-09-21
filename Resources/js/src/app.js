@@ -5,14 +5,12 @@
  * calculations of basketball totals
 *---------------------------------*/
 define('app',[
-  'jquery',
-  'underscore',
-  'backbone',
   'router',
   'team',
   'teams',
-  'utils'
-],function($, _, Backbone, Router, Team, Teams, utils){
+  'utils',
+  'table'
+],function(Router, Team, Teams, utils, table){
 
     return app = {
       document:document,
@@ -182,9 +180,7 @@ define('app',[
         var _this = this;
         if(this.debug){
           app.window.showInspector(); 
-          app.log("... app.init() ...");
         }
-        //_this.load_module('table');
 
         (document, 'ready', function(app){
           _this.window.setTitle("$$$ ULTIMATE TOTALS $$$");

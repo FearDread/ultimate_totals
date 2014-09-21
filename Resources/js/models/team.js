@@ -1,15 +1,19 @@
-define('team',[
-  'jquery',
-  'underscore',
-  'backbone'
-],function($, _, Backbone){
+define(['team'], function(){
 
   var Team = Backbone.Model.extend({
     defaults:{
       name:'Team',
+      home:[],
+      away:[],
       scores:[],
-      home_scores:[],
-      away_scores:[],
+      model:{
+        'pflt':0,
+        'palt':0,
+        'hpat':0,
+        'hpft':0,
+        'apat':0,
+        'apft':0,
+      },
       combined:function(){
         var as = [];
 

@@ -1,10 +1,7 @@
 define('totals',[
-  'jquery',
-  'underscore',
-  'backbone',
   'app',
   'utils',
-],function($, _, Backbone, app, utils){
+],function(app, utils){
 
     return totals = {
       name:'totals',
@@ -102,7 +99,6 @@ define('totals',[
       init:function(){
         var _this = this;
         utils.update_active('totals');
-        app.load_module('table');
 
         (document, 'load', function(totals){
 

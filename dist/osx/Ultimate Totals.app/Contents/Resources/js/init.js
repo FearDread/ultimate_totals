@@ -8,10 +8,10 @@ require.config({
     // router //
     router:'router',
     // main application modules //
-    app:'../src/app',
-    menu:'../src/menu',
-    utils:'../src/utils',
-    table:'../src/table',
+    app:'src/app',
+    menu:'src/menu',
+    utils:'src/utils',
+    table:'src/table',
     // libraries //
     jquery:'libs/jquery/jquery.min',
     sorter:'libs/jquery/plugins/jquery.tablesorter.min',
@@ -27,12 +27,8 @@ require.config({
     help:'modules/help',
     bets:'modules/bets',
     totals:'modules/totals',
-    // views //
-    stats_view:'views/stats-view',
-    help_view:'views/help-view',
-    totals_view:'views/totals-view',
-    bets_view:'views/bets-view'
   },
+  // export globals //
   shim: {
     jquery:{
       exports:'$'
@@ -41,12 +37,15 @@ require.config({
       exports:'_' 
     },
     backbone:{
-      deps:['jquery','underscore'],
-      exports:'Backbone' 
+      exports:'Backbone',
+      deps:['jquery','underscore']
     },
     sorter:{
-      deps:['jquery'],
-      exports:'tableSorter'
+      exports:'tableSorter',
+      deps:['jquery']
+    },
+    table:{
+      exports:'table'
     }
   }
 });
@@ -54,7 +53,12 @@ require([
   'app',
   'menu'
 ],function(app, menu){
+
+    /* Itiialize Platform Menu */
     menu.init();
+
+    /* Initialize Application */
     app.init();
+
   }
 );

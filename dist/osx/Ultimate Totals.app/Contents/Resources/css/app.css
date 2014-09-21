@@ -20,13 +20,22 @@ body {
 }
 
 .blue-btn {
-  width: 120px;
-  height: 40px;
-  border: none;
-  border-radius: 4px;
+  color: #d9eef7;
+  border: solid 1px #0076a3;
+  background: #0095cd;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+  padding: .5em 2em .55em;
   cursor: pointer;
+  border-radius: 4px;
+}
+
+.blue-btn:hover {
+  background: #0095cd;
+}
+
+.blue-btn:active {
+  background: #0095cd;
   color: #FFF;
-  text-shadow: 1px 1px 1px #BBB;
 }
 
 .black-btn {
@@ -92,6 +101,8 @@ body {
   border-radius: 10px;
   background: url('/img/content-bg.jpg') no-repeat;
   background-size: cover;
+  max-width: 1150px;
+  margin: auto;
 }
 
 .main-nav {
