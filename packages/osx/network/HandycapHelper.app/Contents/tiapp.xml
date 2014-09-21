@@ -1,0 +1,28 @@
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+
+<id>com.mms.handycap</id>
+<name>HandycapHelper</name>
+<version>1.0</version>
+<publisher>Moshyn</publisher>
+<url>http://moshyn.com</url>
+<icon>handy_helper_icon.png</icon>
+<copyright>2014 by GHAP</copyright>
+
+<window>
+<id>initial</id>
+<title>HandycapHelper</title>
+<url>app://index.html</url>
+<width>1200</width>
+<max-width>3000</max-width>
+<min-width>0</min-width>
+<height>800</height>
+<max-height>3000</max-height>
+<min-height>0</min-height>
+<fullscreen>true</fullscreen>
+<resizable>true</resizable>
+<chrome scrollbars="true">true</chrome>
+<maximizable>true</maximizable>
+<minimizable>true</minimizable>
+<closeable>true</closeable>
+</window>
+</ti:app>

@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/css/style.css" type="text/stylesheet" />
+    <link rel="stylesheet" href="/css/app.css" type="text/stylesheet" />
+  </head>
+  <body> 
+    <div class="main-container"> 
+      <div class="main-nav">
+        <ul>
+          <li class='active totals'>
+            <a href="#totals">Totals</a>
+          </li>
+          <li class='stats'>
+            <a href="#stats">Stats</a>
+          </li>
+          <li class='bets'>
+            <a href="#bets">Bets</a>
+          </li>
+          <li class='help'>
+            <a href="#help">Help</a>
+          </li>
+        </ul>
+      </div>
+      <div class='main-content' id='main-content'>
+      </div>
+    </div>
+    <script src="/js/require.js" type="text/javascript" data-main="/js/init.js"></script>
+    <script id='template-totals' type='text/template'>
+      <h1 class='title'>Ultimate Totals</h1>
+      <p class='title-text'> Beat the bookies and win with UTotals!</p>
+      <div class='game-div'>
+        <div class='left team-game'>
+          <form name='home-form' class='home-form'>
+          <div class='top'>
+            <label>SELECT TEAM</label>
+            <select class="team-select"></select>
+            <label>SELECT TYPE</label>
+            <select class='score-select'>
+              <option value='all'>All Games</option>
+              <option value='home'>Home Games</option>
+              <option value='away'>Away Games</option>
+            </select>
+          </div>
+          <div class='bottom'>
+            <input type='text' name='score' placeholder='Score' />
+            <input type='text' name='score' placeholder='Score' />
+            <input type='text' name='score' placeholder='Score' />
+            <button class='white-btn add-score'>Add Score</button>
+          </div>
+          </form>
+        </div>
+        <span class='vs'>VS</span>
+        <div class='right team-game away'>
+          <form name='away-form' class='away-form'>
+          <div class='top'>
+            <label>SELECT TEAM</label>
+            <select class="team-select"></select>
+            <label>SELECT TYPE</label>
+            <select class='score-select'>
+              <option value='all'>All Games</option>
+              <option value='home'>Home Games</option>
+              <option value='away'>Away Games</option>
+            </select>
+          </div>
+          <div class='bottom'>
+            <input type='text' name='score' placeholder='Score' />
+            <input type='text' name='score' placeholder='Score' />
+            <input type='text' name='score' placeholder='Score' />
+            <button class='white-btn add-score'>Add Score</button>
+          </div>
+          </form>
+        </div>
+        <div class='button-div'>
+          <button class='black-btn calc'>Run Totals</button>
+          <button class='black-btn calc-all'>All Teams</button>
+          <button class='black-btn save-game'>Save Game</button>
+        </div>
+      </div>
+      <div class="results-div">
+        <h2>RESULTS</h2>
+        <table class='tablesorter results-table'>
+          <thead>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </script>
+    <script id='template-stats' type='text/template'>
+      <h1>Latest Stats</h1>
+      <p class='title-text'> Stay up to date with all players, teams, and seasons!</p>
+    </script>
+    <script id='template-bets' type='text/template'>
+      <h1>Track Bets</h1>
+      <p class='title-text'>Keep a record of all your bets in one place!</p>
+      <div class='new-bet-wrapper'>
+        <h2>NEW BET</h2>
+        <form name='new_bet' class='new-bet-form' method='POST'>
+          <label>Bet Type</label>
+          <input type='text' name='type' placeholder='Bet' /> 
+
+        </form>
+      </div>
+      <div class='bet-button-div'>
+        <button class='black-btn add-bet'>Enter Bet</button>
+      </div>
+      <div class='results-div'>
+        <h2>ALL BETS</h2>
+        <table class='tablesorter bets-table'>
+
+        </table>
+      </div>
+    </script>
+    <script id='template-help' type='text/template'>
+      <h1>Help</h1>
+    </script>
+  </body>
+</html>
