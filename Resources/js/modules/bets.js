@@ -38,7 +38,6 @@ define('betting',[
           i++;
         } while(--len);
 
-        app.log(bet);
         bet.save_bet();
       },
       load_view:function(){

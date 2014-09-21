@@ -16,14 +16,15 @@ define('bet',[
         payout:0
       },
       save_bet:function(){
-        var sql = "INSERT INTO Bets VALUES "
-        + "(default,'" + this.get('type') + "','" + this.get('pick') + "','" + this.get('date') + "',"
+        var sql = "INSERT INTO Bets (type,pick,date,comment,market,stakes,odds,result,payout)" 
+        + "VALUES ('" + this.get('type') + "','" + this.get('pick') + "','" + this.get('date') + "',"
         + "'" + this.get('comment') + "','" + this.get('market') + "','" + this.get('stakes') + "',"
         + "'" + this.get('odds') + "','" + this.get('result') + "','" + this.get('payout') + "')";
-        console.log(sql);
-      
+
         var res = DB.query(sql);
-        console.log(res);
+        if(res){
+          alert('Added new bet.'); 
+        }
       }
     });
 

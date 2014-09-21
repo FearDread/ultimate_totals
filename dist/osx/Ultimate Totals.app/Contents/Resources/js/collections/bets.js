@@ -8,7 +8,7 @@ define('bets',[
         get_all_bets:function(){
           var sql = "SELECT * FROM Bets";
           var results = DB.query(sql);
-          console.log(results); 
+          console.log(results.rowCount()); 
         }
     
     });

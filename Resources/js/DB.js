@@ -5,7 +5,7 @@ define(['DB'], function(){
     db:Ti.Database.open(this.name),
     create:function(){
       var tables = [
-        "CREATE TABLE IF NOT EXISTS Bets(id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT,pick TEXT,date DATE,comment TEXT, market TEXT, stakes TEXT, odds INTEGER,result TEXT, payout INTEGER);",
+        "CREATE TABLE IF NOT EXISTS Bets(id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT,pick TEXT,date TEXT,comment TEXT, market TEXT, stakes TEXT, odds TEXT,result TEXT, payout TEXT);",
       ];
 
       var i = 0;
