@@ -5,6 +5,8 @@
 require.config({
   baseUrl: 'js',
   paths: {
+    // DB //
+    DB:'DB',
     // router //
     router:'router',
     // main application modules //
@@ -27,6 +29,8 @@ require.config({
     help:'modules/help',
     bets:'modules/bets',
     totals:'modules/totals',
+    database:'modules/database',
+    reports:'modules/reports',
   },
   // export globals //
   shim: {
@@ -51,8 +55,11 @@ require.config({
 });
 require([
   'app',
-  'menu'
-],function(app, menu){
+  'menu',
+  'DB'
+],function(app, menu, DB){
+    /* Setup DB */
+    DB.create();
 
     /* Itiialize Platform Menu */
     menu.init();

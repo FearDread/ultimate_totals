@@ -190,6 +190,7 @@ body {
 .game-div {
   min-height: 250px;
   position: relative;
+  margin-top: 50px;
 }
 
 .game-div .team-game {
@@ -354,16 +355,17 @@ table tbody tr td {
 
 .new-bet .title-tab {
   position: absolute;
-  top: 106px;
+  top: 110px;
   color: white;
   font-size: 14px;
-  height: 15px;
+  height: 10px;
   padding: 10px;
   position: absolute;
   text-shadow: #BBB 1px 1px 1px;
   width: 35px;
-  background: #0095cd;
-  background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
 }
 
 .new-bet form button {

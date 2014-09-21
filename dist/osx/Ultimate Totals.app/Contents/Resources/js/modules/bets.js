@@ -1,7 +1,8 @@
 define('bets',[
   'app',
   'utils',
-],function(app, utils){
+  'DB'
+],function(app, utils, DB){
 
     return bets = {
       name:'bets',
@@ -50,6 +51,7 @@ define('bets',[
 
         (document, 'load', function(bets){
 
+          app.log(DB);
           _this.load_view();
 
         })(this);

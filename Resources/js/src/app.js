@@ -70,6 +70,7 @@ define('app',[
         ],
       },
       calculate_scores:function(team){
+        var pflt, hpft, apft, palt, hpat, apat, apflt, apalt;
         var x = 0,
             total = 0,
             scores = team.get('scores'),
@@ -81,27 +82,33 @@ define('app',[
           total += parseInt(s, 10);
 
           if(x == 1){
-            var pflt = Math.floor(total / 2); 
-            var hpft = Math.floor((total - 10) / 2);
-            var apft = Math.floor((total + 10) / 2);
+            pflt = Math.floor(total / 2); 
+            hpft = Math.floor((total - 10) / 2);
+            apft = Math.floor((total + 10) / 2);
           }else if(x == 3){
-            var palt = Math.floor(total / 5); 
-            var hpat = Math.floor((total + 10) / 4);
-            var apat = Math.floor((total - 10) / 4);
+            palt = Math.floor(total / 4); 
+            hpat = Math.floor((total + 10) / 4);
+            apat = Math.floor((total - 10) / 4);
           }
 
           x++;
         } while(--len);
 
         total = Math.floor(total / x);
-        var apflt = (pflt + hpft + apft) / 3;
+        apflt = (pflt + hpft + apft) / 3;
         average = Math.floor((apflt + total) / 2);
+
+        if(typeof palt !== undefined){
+          apalt = (palt + hpat + apat) / 3;
+          average = Math.floor((apflt + apalt) / 2);
+        }
 
         model.pflt = pflt;
         model.palt = palt;
         model.hpft = hpft;
         model.apft = apft;
         model.hpat = hpat;
+        model.apat = apat;
         model.total = average;
 
         app.log(team);
@@ -186,7 +193,7 @@ define('app',[
         } while(--tms);
 
         app.calculate_all(teams);
-        table.build_table(obj, this.teams);
+        table.build_table(teams);
       },
       init:function(){
         var _this = this;

@@ -58,43 +58,20 @@ define('table',[
         html += '</tr>';
         $('tbody').append(html);
       },
-      build_row:function(team, model){
-        $('thead').empty();
-        $('tbody').empty();
-
+      build_table:function(teams){
+        app.log(teams);
+        this.clear();
         this.refresh_headers();
-        var html = '<tr><td>' + team; 
 
-        $.each(this.headers, function(k, v){
-          if(v != 'total'){
-            html += '<td>' + 0 + '</td>'; 
-          }else{
-            html += '<td>' + model.total + '</td>';
-          }
-        });
+        var i = 0;
+        var len = teams.models.length;
+
+        do {
+          var team = teams.models[i];
+          this.append_row(team);
         
-        html += '</tr>';
-        $('tbody').append(html);
-      },
-      build_table:function(data, teams){
-        $('thead').empty();
-        $('tbody').empty();
-
-        var count = 5;
-        var html = '<tr>',
-        this.refresh_headers();
-
-        $.each(teams.list, function(k, team){
-          html += '<td>' + team + '</td>';
-
-          $.each(teams.model, function(k, v){
-            html += '<td>' + v + '</td>'; 
-          });
-
-          html += '</tr>';
-        });
-
-        $('tbody').append(html);
+          i++;
+        } while(--len);
       },
       init:function(){
         var _this = this;

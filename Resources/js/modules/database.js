@@ -1,30 +1,20 @@
-define('bets',[
+define('database',[
   'app',
   'utils',
-  'DB'
-],function(app, utils, DB){
+  'router'
+],function(app, utils, Router){
 
-    return bets = {
-      name:'bets',
+    return database = {
+      name:'database',
       model:null,
       bind_events:function(){
-        var _this = this;
-
-        $('.add-bet').bind('click', function(_e){
-          _e.preventDefault();
-          _this.save_new_bet(); 
-        });
-      
-      },
-      save_new_bet:function(){
-        app.log('save to DB and append to table...');
       
       },
       load_view:function(){
         var _this = this;
         var view = Backbone.View.extend({
           el: "#main-content",
-          template: _.template($("#template-bets").html()),
+          template: _.template($("#template-db").html()),
           initialize:function(){
             this.render();
           },
@@ -39,21 +29,20 @@ define('bets',[
             return this;
           },
           events:{
-            'load':app.log('bets view loaded')
+            'load':app.log('database view loaded')
           }
         });
 
-        new view(); 
-      },
+        new view();
+      }, 
       init:function(){
         var _this = this;
-        utils.update_active('bets');
+        utils.update_active('db');
 
-        (document, 'load', function(bets){
+        (document, 'ready', function(database){
 
-          app.log(DB);
-          _this.load_view();
-
+            _this.load_view();
+        
         })(this);
       }
     }
