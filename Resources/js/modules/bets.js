@@ -1,10 +1,11 @@
-define('bets',[
+define('betting',[
   'app',
   'utils',
-  'DB'
-],function(app, utils, DB){
+  'bet',
+  'bets'
+],function(app, utils, Bet, Bets){
 
-    return bets = {
+    return betting = {
       name:'bets',
       model:null,
       bind_events:function(){
@@ -16,9 +17,29 @@ define('bets',[
         });
       
       },
+      add_all_bets:function(){
+        var bets = new Bets();
+        var all = bets.get_all_bets();
+
+        app.log(bets);
+        app.log(all);
+      },
       save_new_bet:function(){
-        app.log('save to DB and append to table...');
-      
+        var i = 0,
+            form = $('form.new-bet-form'),
+            vals = form.serializeArray(),
+            bet = new Bet(),
+            len = vals.length;
+
+        do {
+          var obj = vals[i]; 
+          bet.set(obj.name, obj.value);
+        
+          i++;
+        } while(--len);
+
+        app.log(bet);
+        bet.save_bet();
       },
       load_view:function(){
         var _this = this;
@@ -35,6 +56,7 @@ define('bets',[
             this.$el.html(html);
 
             _this.bind_events();
+            _this.add_all_bets();
 
             return this;
           },
@@ -49,9 +71,8 @@ define('bets',[
         var _this = this;
         utils.update_active('bets');
 
-        (document, 'load', function(bets){
+        (document, 'load', function(betting){
 
-          app.log(DB);
           _this.load_view();
 
         })(this);

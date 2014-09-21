@@ -24,10 +24,11 @@ require.config({
     team:'models/team',
     // collections //
     teams:'collections/teams',
+    bets:'collections/bets',
     // modules //
     stats:'modules/stats',
     help:'modules/help',
-    bets:'modules/bets',
+    betting:'modules/bets',
     totals:'modules/totals',
     database:'modules/database',
     reports:'modules/reports',
