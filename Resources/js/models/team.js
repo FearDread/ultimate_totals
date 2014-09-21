@@ -13,6 +13,7 @@ define(['team'], function(){
         'hpft':0,
         'apat':0,
         'apft':0,
+        'total':0
       },
       combined:function(){
         var as = [];

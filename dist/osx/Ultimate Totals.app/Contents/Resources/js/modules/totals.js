@@ -79,9 +79,7 @@ define('totals',[
             this.render();
           },
           render:function(){
-            var obj = {};
-            var html = this.template(obj);
-
+            var html = this.template();
             this.$el.html(html);
 
             _this.build_select();

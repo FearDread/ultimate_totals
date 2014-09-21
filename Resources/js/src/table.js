@@ -3,20 +3,21 @@
  * @author: Garrett Haptonstall
 *---------------------------------*/
 define('table',[
-  'jquery',
   'utils',
-  'sorter'
-],function($, utils, sorter){
+  'sorter',
+  'teams'
+],function(utils, sorter, Teams){
 
     return table = {
       headers:[
+        'team',
         'pflt',
         'palt',
         'hpat',
         'hpft',
         'apat',
         'apft',
-        'total'
+        'avg'
       ],
       sort:{
         debug:true,
@@ -25,7 +26,6 @@ define('table',[
       refresh_headers:function(){
         var thead = $('thead');
         var tr = $('<tr></tr>');
-        tr.append('<th>TEAM</th>');
 
         $.each(this.headers, function(k, v){
           var th = $('<th></th>');
@@ -36,15 +36,20 @@ define('table',[
         thead.append(tr);
       },
       clear:function(){
+        $('thead').empty();
         $('tbody').empty();
       },
-      append_row:function(team, model){
+      append_row:function(team){
         var html = '';
-        html += '<tr><td>' + team; 
+        var model = team.get('model');
+        html += '<tr><td>' + team.get('name'); 
 
-        $.each(this.headers, function(k, v){
-          if(v != 'total'){
-            html += '<td>' + model[v] + '</td>'; 
+        $.each(model, function(k, v){
+          if(v != 'avg'){
+            if(typeof model[k] == undefined){
+              model[k] = 0; 
+            }
+            html += '<td>' + model[k] + '</td>'; 
           }else{
             html += '<td>' + model.total + '</td>';
           }

@@ -86,7 +86,7 @@ body {
 
 .vs {
   position: absolute;
-  top: 200px;
+  top: 60px;
   left: 49%;
   color: #FFF;
   text-shadow: 1px 1px 2px #000;
@@ -96,13 +96,12 @@ body {
 
 .main-container {
   position: relative;
-  border-bottom: 2px outset buttonface;
-  border-right: 1px outset buttonface;
   border-radius: 10px;
   background: url('/img/content-bg.jpg') no-repeat;
   background-size: cover;
   max-width: 1150px;
   margin: auto;
+  -webkit-box-shadow: 2px 2px 3px 1px #4c4c4c;
 }
 
 .main-nav {
@@ -184,6 +183,11 @@ body {
   text-shadow: 1px 1px 1px #000;
 }
 
+.game-div {
+  min-height: 250px;
+  position: relative;
+}
+
 .game-div .team-game {
   width: 500px;
   display: inline-block;
@@ -191,6 +195,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   background: #FFF;
+  -webkit-box-shadow: 1px 2px 1px #333;
 }
 
 .game-div .team-game .top {
@@ -222,9 +227,10 @@ body {
 }
 
 .button-div {
-  width: 500px;
-  margin: auto;
-  margin-top: 30px;
+  width: 550px;
+  position: absolute;
+  bottom: 0;
+  left: 300px;
 }
 
 .button-div button {
@@ -243,15 +249,21 @@ body {
   text-shadow: 1px 1px 2px #000;
 }
 
+.results-div button {
+  position: relative;
+  top: -7px;
+}
+
 table {
   cursor: pointer;
+  margin-bottom: 20px;
   width: 625px;
   min-height: 200px;
   border: 2px dashed #CCC;
   border-radius: 5px;
   padding: 10px;
   border: none;
-  background: #FFF !important;
+  background: transparent;
 }
 
 table thead {
@@ -262,8 +274,7 @@ table thead {
 }
 
 table thead th {
-  width: 200px;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
   color: #333;

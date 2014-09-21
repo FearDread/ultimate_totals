@@ -68,33 +68,44 @@ define('app',[
           'Utah',
           'Washington'
         ],
-        model:{
-          'pflt':0,
-          'palt':0,
-          'hpat':0,
-          'hpft':0,
-          'apat':0,
-          'apft':0,
-          'total':0
-        },
       },
       calculate_scores:function(team){
         var x = 0,
             total = 0,
             scores = team.get('scores'),
-            len = scores.length;
+            len = scores.length,
+            model = team.get('model');
 
         do {
           var s = scores[x];
           total += parseInt(s, 10);
 
+          if(x == 1){
+            var pflt = Math.floor(total / 2); 
+            var hpft = Math.floor((total - 10) / 2);
+            var apft = Math.floor((total + 10) / 2);
+          }else if(x == 3){
+            var palt = Math.floor(total / 5); 
+            var hpat = Math.floor((total + 10) / 4);
+            var apat = Math.floor((total - 10) / 4);
+          }
+
           x++;
         } while(--len);
 
         total = Math.floor(total / x);
-        this.teams.model['total'] = total;
+        var apflt = (pflt + hpft + apft) / 3;
+        average = Math.floor((apflt + total) / 2);
 
-        table.append_row(team.get('name'), this.teams.model);
+        model.pflt = pflt;
+        model.palt = palt;
+        model.hpft = hpft;
+        model.apft = apft;
+        model.hpat = hpat;
+        model.total = average;
+
+        app.log(team);
+        table.append_row(team);
       },
       calculate_all:function(col){
       
@@ -143,6 +154,7 @@ define('app',[
         } while(--len);
 
         table.clear();
+        table.refresh_headers();
         app.calculate_scores(home_team);
 
         if(away_team.get('scores').length > 0){
