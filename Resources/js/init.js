@@ -27,11 +27,6 @@ require.config({
     help:'modules/help',
     bets:'modules/bets',
     totals:'modules/totals',
-    // views //
-    stats_view:'views/stats-view',
-    help_view:'views/help-view',
-    totals_view:'views/totals-view',
-    bets_view:'views/bets-view'
   },
   shim: {
     jquery:{
