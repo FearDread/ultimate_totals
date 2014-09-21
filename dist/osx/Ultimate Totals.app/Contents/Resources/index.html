@@ -17,12 +17,21 @@
           <li class='bets'>
             <a href="#bets">Bets</a>
           </li>
-          <li class='help'>
-            <a href="#help">Help</a>
+          <li class='db'>
+            <a href="#database">Database</a>
           </li>
+          <li class='reports'>
+            <a href='#reports'>Reports</a>
+          </li>
+        </ul>
+        <ul>
+        
         </ul>
       </div>
       <div class='main-content' id='main-content'>
+      </div>
+      <div class='footer'>
+        <p class='copy-text'>@2014 Moshyn Inc. | all rights reserved</p> 
       </div>
     </div>
     <script src="/js/require.js" type="text/javascript" data-main="/js/init.js"></script>
@@ -87,10 +96,8 @@
           <button class='blue-btn'>Export</button>
         </h2>
         <table class='tablesorter results-table totals-table'>
-          <thead>
-          </thead>
-          <tbody>
-          </tbody>
+          <thead></thead>
+          <tbody></tbody>
         </table>
       </div>
     </script>
@@ -101,21 +108,76 @@
     <script id='template-bets' type='text/template'>
       <h1>Track Bets</h1>
       <p class='title-text'>Keep a record of all your bets in one place!</p>
-      <div class='new-bet-wrapper'>
-        <h2>NEW BET</h2>
+      <div class='new-bet'>
+        <span class='title-tab'>NEW</span>
         <form name='new_bet' class='new-bet-form' method='POST'>
-          <label>Bet Type</label>
-          <input type='text' name='type' placeholder='Bet' /> 
-
+          <div class='form-group'>
+            <label>Bet Type</label>
+            <select name='type'>
+              <option value='bet' selected>Bet</option>
+              <option value='parlay'>Parlay</option>
+              <option value='trade'>Trading</option>
+              <option value='surebet'>Sure Bet</option>
+              <option value='other'>Other</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label>Pick</label>
+            <select name='pick'>
+              <option value='home'>Home</option>
+              <option value='away'>Away</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label>Bet Date / Time</label> 
+            <input type='text' name='date' class='datepicker' placeholder='Click' />
+            <input type='text' name='time' class='timepicker' placeholder='Click' />
+          </div>
+          <div class='form-group'>
+            <label>Comment</label>
+            <input type='text' name='comment' placeholder='Enter comment' class='comment'/>
+          </div>
+          <div class='form-group'>
+            <label>Market</label>
+            <select name='market'>
+              <option value='totals'>Score Totals</option>
+              <option value='homeaway'>Home / Away</option>
+              <option value='overunder'>Over / Under</option>
+              <option value='homeaway'>Odd / Even</option>
+              <option value='homeaway'>Handycap (spread)</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label>Stakes</label>
+            <input type='text' name='stakes' placeholder='Stakes amount' />
+          </div>
+          <div class='form-group'>
+            <label>Odds</label>
+            <input type='text' name='odds' placeholder='Odds Percentage' />
+          </div>
+          <div class='form-group'>
+            <label>Result</label>
+            <select name='result'>
+              <option value='pending' selected>Pending</option>
+              <option value='won'>Won</option>
+              <option value='lost'>Lost</option>
+              <option value='void'>Void</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label>Payout</label>
+            <input type='text' name='payout' placeholder='Payout' />
+          </div>
+          <div class='form-group bet-button-div'>
+            <button class='black-btn add-bet'>Enter Bet</button>
+          </div>
         </form>
-      </div>
-      <div class='bet-button-div'>
-        <button class='black-btn add-bet'>Enter Bet</button>
       </div>
       <div class='results-div'>
         <h2>ALL BETS</h2>
-        <table class='tablesorter bets-table'>
-
+        <table class='tablesorter bets-table totals-table'>
+          <thead></thead>
+          <tbody></tbody>
         </table>
       </div>
     </script>

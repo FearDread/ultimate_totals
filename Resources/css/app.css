@@ -1,4 +1,8 @@
-
+/* APPLICATION CSS 
+ * @author: Garrett Haptonstall <ghap@moshyn.com> 
+ *
+ *
+*/
 * {
   font-style: normal;
   font-weight: normal;
@@ -239,7 +243,7 @@ body {
 }
 
 .results-div {
-  padding: 10px;
+  padding: 10px 10px 50px;
   margin-top: 30px;
   background: #FFF:
 }
@@ -304,35 +308,81 @@ table tbody tr td {
   color: #333
 }
 
-.new-bet-wrapper {
+.new-bet{
   width: 1000px;
   min-height: 150px;
   border-radius: 5px;
   background: #FFF;
   padding: 10px;
   margin: auto;
+  -webkit-box-shadow: 1px 2px 1px #333;
 }
 
-.new-bet-wrapper h2 {
+.new-bet h2 {
   color: #000;
   margin: 0;
   text-shadow: 1px 1px 2px #bbb;
 }
 
-.new-bet-wrapper form {
-
+.new-bet form .form-group {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-vertical-align: top;
+  margin-left: 20px;
 }
 
-.new-bet-wrapper form label {
+.new-bet form input[type='text'] {
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.new-bet form input.comment {
+  width: 350px;
+}
+.new-bet form input.datepicker,
+.new-bet form input.timepicker {
+  width: 120px;
+}
+.new-bet form label {
   display: block;
   text-shadow: 1px 1px 1px #BBB;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   margin: 5px;
+}
+
+.new-bet .title-tab {
+  position: absolute;
+  top: 106px;
+  color: white;
+  font-size: 14px;
+  height: 15px;
+  padding: 10px;
+  position: absolute;
+  text-shadow: #BBB 1px 1px 1px;
+  width: 35px;
+  background: #0095cd;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+}
+
+.new-bet form button {
+  width: 225px;
+  position: relative;
+  top: -8px;
+  left: 30px;
 }
 
 .bet-button-div {
   width: 150px;
   margin: auto;
   margin-top: 30px;
+}
+
+.footer p {
+  font-size: 10px;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 5px;
 }
