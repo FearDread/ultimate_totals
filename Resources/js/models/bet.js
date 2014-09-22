@@ -15,6 +15,15 @@ define('bet',[
         result:'pending',
         payout:0
       },
+      get_all_bets:function(){
+        var sql = "select * from bets";
+        var res = DB.query(sql);
+
+        if(res){
+          console.log(res);
+          return res;
+        }
+      },
       save_bet:function(){
         var sql = "INSERT INTO Bets (type,pick,date,comment,market,stakes,odds,result,payout)" 
         + "VALUES ('" + this.get('type') + "','" + this.get('pick') + "','" + this.get('date') + "',"

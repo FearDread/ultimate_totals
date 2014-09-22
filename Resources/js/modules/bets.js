@@ -18,18 +18,50 @@ define('betting',[
       
       },
       add_all_bets:function(){
-        var bets = new Bets();
-        var all = bets.get_all_bets();
+        ('thead').empty();
+        ('tbody').empty();
 
-        app.log(bets);
-        app.log(all);
+        var bet = new Bet();
+        var rows = bet.get_all_bets();
+        var head = {
+         'type':'Type',
+         'pick':'Pick',
+         'date':'Date',
+         'comment':'Comment',
+         'market':'Market',
+         'stakes':'Stakes',
+         'odds':'Odds',
+         'result':'Result',
+         'payout':'Payout'
+        };
+
+        var tr = '<tr>';
+        $.each(head, function(k,th){
+          tr += '<th>' + th + '</th>';
+        });
+
+        tr += '</tr>'; 
+        $('thead').append(tr);
+
+        do {
+          var html = '<tr>';
+
+          $.each(head, function(k,th){
+            html += '<td>' + rows.fieldByName(k) + '</td>'; 
+          });
+
+          html += '</tr>';
+          $('tbody').append(html);
+
+          rows.next();
+        } while(rows.isValidRow());
       },
       save_new_bet:function(){
         var i = 0,
             form = $('form.new-bet-form'),
             vals = form.serializeArray(),
-            bet = new Bet(),
-            len = vals.length;
+            len = vals.length,
+            bet = new Bet();
 
         do {
           var obj = vals[i]; 
@@ -39,6 +71,7 @@ define('betting',[
         } while(--len);
 
         bet.save_bet();
+        this.add_all_bets();
       },
       load_view:function(){
         var _this = this;

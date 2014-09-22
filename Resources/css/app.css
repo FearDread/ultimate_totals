@@ -194,6 +194,7 @@ body {
 }
 
 .game-div .team-game {
+  position: relative;
   width: 500px;
   display: inline-block;
   min-height: 100px;
@@ -201,6 +202,38 @@ body {
   border-radius: 5px;
   background: #FFF;
   -webkit-box-shadow: 1px 2px 1px #333;
+}
+
+.game-div .team-game .home-tab {
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  color: white;
+  font-size: 14px;
+  height: 10px;
+  padding: 10px;
+  text-shadow: #BBB 1px 1px 1px;
+  width: 45px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: #333;
+
+}
+
+.game-div .team-game .away-tab {
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  color: white;
+  font-size: 14px;
+  height: 10px;
+  padding: 10px;
+  text-shadow: #BBB 1px 1px 1px;
+  width: 45px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: #333;
+
 }
 
 .game-div .team-game .top {
@@ -360,12 +393,11 @@ table tbody tr td {
   font-size: 14px;
   height: 10px;
   padding: 10px;
-  position: absolute;
   text-shadow: #BBB 1px 1px 1px;
   width: 35px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+  background: #333;
 }
 
 .new-bet form button {
