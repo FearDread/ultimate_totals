@@ -7,7 +7,7 @@ define('betting',[
 
     return betting = {
       name:'bets',
-      model:null,
+      model:new Bet(),
       bind_events:function(){
         var _this = this;
 
@@ -18,11 +18,10 @@ define('betting',[
       
       },
       add_all_bets:function(){
-        ('thead').empty();
-        ('tbody').empty();
+        $('thead').empty();
+        $('tbody').empty();
 
-        var bet = new Bet();
-        var rows = bet.get_all_bets();
+        var rows = this.model.get_all_bets();
         var head = {
          'type':'Type',
          'pick':'Pick',
@@ -60,17 +59,16 @@ define('betting',[
         var i = 0,
             form = $('form.new-bet-form'),
             vals = form.serializeArray(),
-            len = vals.length,
-            bet = new Bet();
+            len = vals.length;
 
         do {
           var obj = vals[i]; 
-          bet.set(obj.name, obj.value);
+          this.model.set(obj.name, obj.value);
         
           i++;
         } while(--len);
 
-        bet.save_bet();
+        this.model.save_bet();
         this.add_all_bets();
       },
       load_view:function(){

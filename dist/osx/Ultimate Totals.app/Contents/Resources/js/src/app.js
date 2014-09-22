@@ -17,6 +17,7 @@ define('app',[
       window:Ti.UI.currentWindow,
       debug:true,
       LS:localStorage,
+      FS:Ti.Filesystem,
       log:function(message){
         if(this.debug){
           console.log('DEBUG: ', message);
@@ -79,6 +80,8 @@ define('app',[
 
         do {
           var s = scores[x];
+
+          if(s == '') s = 0;
           total += parseInt(s, 10);
 
           if(x == 1){
@@ -180,6 +183,7 @@ define('app',[
           t.set('name', this.teams.list[y]);
           for(var x = 0; x < obj.length; x++){
             var s = obj[x].value;
+
             if(parseInt(s) > 0){
               scores.push(s);
             }

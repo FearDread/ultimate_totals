@@ -18,8 +18,9 @@ define('totals',[
         });
 
         $('.calc-all').bind('click', function(_e){
-          var $f = $('form');
-          var vals = $f.serializeArray();
+          var hf = $('form.home-form');
+          var af = $('form.away-form');
+          var vals = $.merge(hf.serializeArray(), af.serializeArray());
 
           if(vals[0].value == ''){
             alert('You must enter at least two scores for at least one team.');
@@ -35,16 +36,13 @@ define('totals',[
         });
 
         $('.show-totals').bind('click', function(_e){
-          var table = $('table');
-
           if($('tbody').children('td').length > 0){
 
           }else{
           
             alert('You must calculate first.');
           }
-        
-        })
+        });
       },
       append_score:function(_e){
         _e.stopPropagation();
