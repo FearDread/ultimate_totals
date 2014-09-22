@@ -1,11 +1,12 @@
 define('teams',[
+  'DB',
   'team'
-],function(Team){
+],function(DB, Team){
 
     var Teams = Backbone.Collection.extend({
       model:Team,
-      getTeam:function(idx){
-        return this.model[idx];
+      get_team:function(idx){
+        return this.model.get(idx);
       }
     });
 

@@ -84,7 +84,7 @@
         font-size:12px;
         font-weight:bold;
         color:#ffffff;
-        text-shadow: 1px 1px 1px #BBB;
+        text-shadow: 1px 1px 1px #333;
       }
       .totals-table thead tr:first-child:hover th{
         background:-o-linear-gradient(bottom, #37b0ce 5%, #144f73 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #37b0ce), color-stop(1, #144f73) );

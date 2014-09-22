@@ -6,7 +6,7 @@ define('menu',
     return menu = {
       items:{
         'File':{
-          'Save':function(){
+          'Print':function(){
           
           },
           'Exit':function(){
@@ -15,14 +15,11 @@ define('menu',
             }
           }
         },
-        'New':{
-          'Game':function(){
+        'Formulas':{
+          'Sanchez':function(){
           
           },
-          'Session':function(){
-          
-          },
-          'Calculation':function(){
+          'Pythagorean':function(){
           
           }
         }
@@ -42,7 +39,6 @@ define('menu',
         });
 
         Ti.UI.setMenu(menu);
-        app.log("init_menu finished ...");
       },
     }
   }

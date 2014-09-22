@@ -10,14 +10,14 @@ define('table',[
 
     return table = {
       headers:[
-        'team',
-        'pflt',
-        'palt',
-        'hpat',
-        'hpft',
-        'apat',
-        'apft',
-        'avg'
+        'Team',
+        'Points For',
+        'Points Against',
+        'Home For',
+        'Home Against',
+        'Away For',
+        'Away Against',
+        'Average'
       ],
       sort:{
         debug:true,
@@ -59,7 +59,6 @@ define('table',[
         $('tbody').append(html);
       },
       build_table:function(teams){
-        app.log(teams);
         this.clear();
         this.refresh_headers();
 

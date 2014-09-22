@@ -111,13 +111,9 @@ define('app',[
         model.apat = apat;
         model.total = average;
 
-        app.log(team);
         table.append_row(team);
       },
-      calculate_all:function(col){
-      
-      },
-      run_totals:function(obj){
+      predict_totals:function(obj){
         var i = 0;
         var types = ['home', 'away'];
         var len = types.length;
@@ -162,13 +158,17 @@ define('app',[
 
         table.clear();
         table.refresh_headers();
-        app.calculate_scores(home_team);
 
+        app.calculate_scores(home_team);
         if(away_team.get('scores').length > 0){
           app.calculate_scores(away_team);
         }
       },
-      run_all_totals:function(obj){
+      save_game:function(){
+      
+        alert("Game added to Database.");
+      },
+      predict_all_teams:function(obj){
         var y = 0;
         var teams = new Teams();
         var tms = this.teams.list.length;
@@ -178,21 +178,20 @@ define('app',[
           var scores = _.clone(t.get('scores'));
 
           t.set('name', this.teams.list[y]);
-
           for(var x = 0; x < obj.length; x++){
             var s = obj[x].value;
             if(parseInt(s) > 0){
               scores.push(s);
             }
           }
-
           t.set('scores', scores);
+
+          this.calculate_scores(t);
           teams.add(t);
 
           y++;
         } while(--tms);
 
-        app.calculate_all(teams);
         table.build_table(teams);
       },
       init:function(){
@@ -202,7 +201,7 @@ define('app',[
         }
 
         (document, 'ready', function(app){
-          _this.window.setTitle("$$$ ULTIMATE TOTALS $$$");
+          _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
 
           $('.main-nav ul li').bind('click', function(_e){

@@ -23,7 +23,7 @@ define('bet',[
 
         var res = DB.query(sql);
         if(res){
-          alert('Added new bet.'); 
+          alert('Bet added to Database.'); 
         }
       }
     });

@@ -20,7 +20,18 @@ define('totals',[
         $('.calc-all').bind('click', function(_e){
           var $f = $('form');
           var vals = $f.serializeArray();
-          app.run_all_totals(vals);
+
+          if(vals[0].value == ''){
+            alert('You must enter at least two scores for at least one team.');
+            return;
+          } 
+
+          app.predict_all_teams(vals);
+        });
+
+        $('.save-game').bind('click', function(_e){
+          _e.preventDefault();
+          app.save_game(); 
         });
 
         $('.show-totals').bind('click', function(_e){
@@ -81,7 +92,7 @@ define('totals',[
           return; 
         }
 
-        app.run_totals(data);
+        app.predict_totals(data);
       },
       load_view:function(){
         var _this = this;

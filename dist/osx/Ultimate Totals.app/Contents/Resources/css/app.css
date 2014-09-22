@@ -232,10 +232,10 @@ body {
 }
 
 .button-div {
-  width: 550px;
+  width: 500px;
   position: absolute;
   bottom: 0;
-  left: 300px;
+  left: 340px;
 }
 
 .button-div button {

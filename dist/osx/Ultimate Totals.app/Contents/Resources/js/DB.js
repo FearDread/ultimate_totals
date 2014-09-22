@@ -6,6 +6,7 @@ define(['DB'], function(){
     create:function(){
       var tables = [
         "CREATE TABLE IF NOT EXISTS Bets(id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT,pick TEXT,date TEXT,comment TEXT, market TEXT, stakes TEXT, odds TEXT,result TEXT, payout TEXT);",
+        "CREATE TABLE IF NOT EXISTS Games(id INTEGER PRIMARY KEY AUTOINCREMENT,team TEXT,pf TXT,pa TEXT,hf TEXT,ha TEXT,af TEXT,aa TEXT,average TEXT)",
       ];
 
       var i = 0;
@@ -19,6 +20,7 @@ define(['DB'], function(){
     },
     query:function(query){
       return this.db.execute(query); 
+      this.exit();
     },
     exit:function(){
       this.db.close(); 
