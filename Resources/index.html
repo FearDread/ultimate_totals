@@ -36,8 +36,7 @@
     </div>
     <script src="/js/require.js" type="text/javascript" data-main="/js/init.js"></script>
     <script id='template-totals' type='text/template'>
-      <h1 class='title'>Ultimate Totals</h1>
-      <p class='title-text'> Beat the bookies and win with UTotals!</p>
+      <br /><br />
       <div class='game-div'>
         <div class='left team-game'>
           <span class='home-tab'>HOME</span>
@@ -45,11 +44,14 @@
           <div class='top'>
             <label>SELECT TEAM</label>
             <select class="team-select"></select>
-            <label>SELECT TYPE</label>
+            <label>ADD HANDYCAP</label>
             <select class='score-select'>
-              <option value='all'>All Games</option>
-              <option value='home'>Home Games</option>
-              <option value='away'>Away Games</option>
+              <option value='0'>+ / - 0</option>
+              <option value='1'>+ / - 1</option>
+              <option value='2'>+ / - 2</option>
+              <option value='3'>+ / - 3</option>
+              <option value='4'>+ / - 4</option>
+              <option value='5'>+ / - 5</option>
             </select>
           </div>
           <div class='bottom'>
@@ -104,15 +106,13 @@
       </div>
     </script>
     <script id='template-stats' type='text/template'>
-      <h1>Latest Stats</h1>
-      <p class='title-text'> Stay up to date with all players, teams, and seasons!</p>
+      <br /><br />
       <p class='title-text'>Comming Soon</p>
     </script>
     <script id='template-bets' type='text/template'>
-      <h1>Track Bets</h1>
-      <p class='title-text'>Keep a record of all your bets in one place!</p>
+      <br /><br />
       <div class='new-bet'>
-        <span class='title-tab'>NEW</span>
+        <span class='title-tab'>NEW BET</span>
         <form name='new_bet' class='new-bet-form' method='POST'>
           <div class='form-group'>
             <label>Bet Type</label>
@@ -188,7 +188,7 @@
       <h1>Help</h1>
     </script>
     <script id='template-db' type='text/template'>
-      <h1>Database</h1>
+      <br /><br />
       <p class='title-text'>Comming Soon</p>
     </script>
     <script id='template-reports' type='text/template'>

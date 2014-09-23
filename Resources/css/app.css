@@ -343,6 +343,7 @@ table tbody tr td {
 }
 
 .new-bet{
+  position: relative;
   width: 1000px;
   min-height: 150px;
   border-radius: 5px;
@@ -350,6 +351,7 @@ table tbody tr td {
   padding: 10px;
   margin: auto;
   -webkit-box-shadow: 1px 2px 1px #333;
+  margin-top: 40px;
 }
 
 .new-bet h2 {
@@ -388,13 +390,13 @@ table tbody tr td {
 
 .new-bet .title-tab {
   position: absolute;
-  top: 110px;
+  top: -30px;
   color: white;
   font-size: 14px;
   height: 10px;
   padding: 10px;
   text-shadow: #BBB 1px 1px 1px;
-  width: 35px;
+  width: 65px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   background: #333;
