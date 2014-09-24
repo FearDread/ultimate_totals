@@ -5,20 +5,21 @@
 require.config({
   baseUrl: 'js',
   paths: {
-    // DB //
-    DB:'DB',
-    // router //
-    router:'router',
-    // main application modules //
-    app:'src/app',
-    menu:'src/menu',
-    utils:'src/utils',
-    table:'src/table',
     // libraries //
     jquery:'libs/jquery/jquery.min',
     sorter:'libs/jquery/plugins/jquery.tablesorter.min',
     backbone:'libs/backbone/backbone-min',
     underscore:'libs/underscore/underscore-min',
+    // DB //
+    DB:'DB',
+    // router //
+    router:'router',
+    // main application modules //
+    EQ:'src/eq',
+    app:'src/app',
+    menu:'src/menu',
+    utils:'src/utils',
+    table:'src/table',
     // models //
     bet:'models/bet',
     team:'models/team',

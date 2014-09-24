@@ -5,6 +5,7 @@
  * calculations of basketball totals
 *---------------------------------*/
 define('app',[
+  'EQ',
   'router',
   'team',
   'teams',
@@ -71,7 +72,7 @@ define('app',[
         ],
       },
       calculate_scores:function(team){
-        var pflt, hpft, apft, palt, hpat, apat, apflt, apalt;
+        var pflt, hpft, apft, palt, hpat, apat, apflt, apalt, pfalt;
         var x = 0,
             total = 0,
             scores = team.get('scores'),
@@ -92,13 +93,24 @@ define('app',[
             palt = Math.floor(total / 4); 
             hpat = Math.floor((total + 10) / 4);
             apat = Math.floor((total - 10) / 4);
+          } else if (x > 4){
+          
           }
 
           x++;
         } while(--len);
 
-        total = Math.floor(total / x);
+
         apflt = (pflt + hpft + apft) / 3;
+        if(typeof palt != undefined){
+          pfalt = (palt + hpat + apat) / 3;
+        
+        }
+
+        total = Math.floor(total / x);
+        if(apflt){
+        
+        }
         average = Math.floor((apflt + total) / 2);
 
         if(typeof palt !== undefined){
@@ -207,6 +219,8 @@ define('app',[
         (document, 'ready', function(app){
           _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
+
+          var eq = new EQ();
 
           $('.main-nav ul li').bind('click', function(_e){
             var name = $(this).children('a').attr('href'); 
