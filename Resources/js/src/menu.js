@@ -1,7 +1,6 @@
-define('menu',
-  ['jquery','app'],
-
-  function($, app){
+define('menu',[
+  'app'
+],function(app){
 
     return menu = {
       items:{

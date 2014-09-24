@@ -13,11 +13,11 @@ define('app',[
 ],function(Router, Team, Teams, utils, table){
 
     return app = {
-      document:document,
-      window:Ti.UI.currentWindow,
       debug:true,
-      LS:localStorage,
-      FS:Ti.Filesystem,
+      properties:{},
+      ls:localStorage,
+      fs:Ti.Filesystem,
+      window:Ti.UI.currentWindow,
       log:function(message){
         if(this.debug){
           console.log('DEBUG: ', message);
