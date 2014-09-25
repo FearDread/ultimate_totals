@@ -5,7 +5,6 @@
  * calculations of basketball totals
 *---------------------------------*/
 define('app',[
-  'EQ',
   'router',
   'team',
   'teams',
@@ -15,7 +14,7 @@ define('app',[
 
     return app = {
       debug:true,
-      properties:{},
+      properties:null,
       ls:localStorage,
       fs:Ti.Filesystem,
       window:Ti.UI.currentWindow,
@@ -72,59 +71,9 @@ define('app',[
         ],
       },
       calculate_scores:function(team){
-        var pflt, hpft, apft, palt, hpat, apat, apflt, apalt, pfalt;
-        var x = 0,
-            total = 0,
-            scores = team.get('scores'),
-            len = scores.length,
-            model = team.get('model');
-
-        do {
-          var s = scores[x];
-
-          if(s == '') s = 0;
-          total += parseInt(s, 10);
-
-          if(x == 1){
-            pflt = Math.floor(total / 2); 
-            hpft = Math.floor((total - 10) / 2);
-            apft = Math.floor((total + 10) / 2);
-          }else if(x == 3){
-            palt = Math.floor(total / 4); 
-            hpat = Math.floor((total + 10) / 4);
-            apat = Math.floor((total - 10) / 4);
-          } else if (x > 4){
-          
-          }
-
-          x++;
-        } while(--len);
-
-
-        apflt = (pflt + hpft + apft) / 3;
-        if(typeof palt != undefined){
-          pfalt = (palt + hpat + apat) / 3;
-        
-        }
-
-        total = Math.floor(total / x);
-        if(apflt){
-        
-        }
-        average = Math.floor((apflt + total) / 2);
-
-        if(typeof palt !== undefined){
-          apalt = (palt + hpat + apat) / 3;
-          average = Math.floor((apflt + apalt) / 2);
-        }
-
-        model.pflt = pflt;
-        model.palt = palt;
-        model.hpft = hpft;
-        model.apft = apft;
-        model.hpat = hpat;
-        model.apat = apat;
-        model.total = average;
+        var f = app.properties.getString('formula');
+        var eq = new EQ(); 
+        eq.apply_formula(f,team);
 
         table.append_row(team);
       },
@@ -212,15 +161,26 @@ define('app',[
       },
       init:function(){
         var _this = this;
-        if(this.debug){
+        var userProperties;
+        var file = _this.fs.getFile(Ti.API.application.dataPath, 'user.properties');
+
+        if(_this.debug){
           app.window.showInspector(); 
         }
+
+        if(file.exists()){
+          _this.properties = Ti.App.loadProperties(file);
+        }else{
+          _this.properties = Ti.App.createProperties({
+              version:'0.01',
+              formula:'sanchez'
+          });
+        }
+        console.log(_this.properties);
 
         (document, 'ready', function(app){
           _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
-
-          var eq = new EQ();
 
           $('.main-nav ul li').bind('click', function(_e){
             var name = $(this).children('a').attr('href'); 

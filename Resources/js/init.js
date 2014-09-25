@@ -15,7 +15,6 @@ require.config({
     // router //
     router:'router',
     // main application modules //
-    EQ:'src/eq',
     app:'src/app',
     menu:'src/menu',
     utils:'src/utils',
