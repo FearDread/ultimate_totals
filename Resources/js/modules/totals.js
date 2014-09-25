@@ -79,11 +79,11 @@ define('totals',[
 
         data.home = hf.serializeArray();
         data.home['team'] = $('select.team-select', hf).val();
-        data.home['type'] = $('select.score-select', hf).val();
+        data.home['handycap'] = $('select.handycap', hf).val();
 
         data.away = af.serializeArray();
         data.away['team'] = $('select.team-select', af).val();
-        data.away['type'] = $('select.score-select', af).val();
+        data.away['handycap'] = $('select.handycap', af).val();
 
         if(data.home[0].value == ''){
           alert('You must fill out at least two scores for at least one team.');

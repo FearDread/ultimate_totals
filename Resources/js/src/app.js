@@ -91,6 +91,7 @@ define('app',[
             var new_scores = _.clone(home_team.get('scores'));
 
             home_team.set('name', obj[type].team);
+            home_team.set('handycap', obj[type].handycap);
 
             for(var x = 0; x < arr.length; x++){
               var s = arr[x].value;
@@ -106,6 +107,7 @@ define('app',[
             var new_scores = _.clone(away_team.get('scores'));
 
             away_team.set('name', obj[type].team);
+            away_team.set('handycap', obj[type].handycap);
 
             for(var x = 0; x < arr.length; x++){
               var s = arr[x].value;

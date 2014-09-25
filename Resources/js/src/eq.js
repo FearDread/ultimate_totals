@@ -1,5 +1,7 @@
-// jquery plugin returning formula object with 
+// Prototype returning formula object with 
 // needed equations for prediction methods.
+// This will be extended via formulas module
+// to add new formula methods
 var EQ = function(){
   return {
     opts:{
@@ -26,12 +28,12 @@ var EQ = function(){
       }
     },
     sanchez:function(team){
-      var pflt, hpft, apft, palt, hpat, apat, apflt, apalt, pfalt;
+      var pflt, hpft, apft, palt, hpat, apat, apflt, apalt;
       var x = 0,
           total = 0,
           scores = team.get('scores'),
           len = scores.length,
-          handycap = team.get('handycap');
+          handycap = parseInt(team.get('handycap')),
           model = team.get('model');
 
       do {
@@ -42,35 +44,33 @@ var EQ = function(){
 
         if(x == 1){
           pflt = Math.floor(total / 2); 
-          hpft = Math.floor((total - 10) / 2);
-          apft = Math.floor((total + 10) / 2);
-        }else if(x == 3){
-          palt = Math.floor(total / 4); 
-          hpat = Math.floor((total + 10) / 4);
-          apat = Math.floor((total - 10) / 4);
-        } else if (x > 4){
-        
+          hpft = Math.floor((total + handycap) / 2);
+          apft = Math.floor((total - handycap) / 2);
+        }else if(x == 2){
+          palt = Math.floor(total / 3); 
+          hpat = Math.floor((total + handycap) / 3);
+          apat = Math.floor((total - handycap) / 3);
+        }
+        if(x == 3){
+          pflt = Math.floor(total / 4);
+          hpft = Math.floor((total + handycap) / 4);
+          apft = Math.floor((total - handycap) / 4);
+        }else if(x == 4){
+          palt = Math.floor(total / 5); 
+          hpat = Math.floor((total + handycap) / 5);
+          apat = Math.floor((total - handycap) / 5);
         }
 
         x++;
       } while(--len);
 
-
-      apflt = (pflt + hpft + apft) / 3;
-      if(typeof palt != undefined){
-        pfalt = (palt + hpat + apat) / 3;
-      
-      }
-
+      apflt = Math.floor((pflt + hpft + apft) / 3);
       total = Math.floor(total / x);
-      if(apflt){
-      
-      }
       average = Math.floor((apflt + total) / 2);
 
-      if(typeof palt !== undefined){
+      if(palt !== undefined){
         apalt = (palt + hpat + apat) / 3;
-        average = Math.floor((apflt + apalt) / 2);
+        average = Math.floor((apflt + apalt + total) / 3);
       }
 
       model.pflt = pflt || null;
@@ -83,8 +83,9 @@ var EQ = function(){
     
       return team;
     },
-    pythagorean:function(){
-    
+    pythagorean:function(team){
+      console.log('apply pythagorean formula');
+      console.log(team);
     }
   }
 }

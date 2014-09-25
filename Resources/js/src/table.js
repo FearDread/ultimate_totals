@@ -45,9 +45,9 @@ define('table',[
         html += '<tr><td>' + team.get('name'); 
 
         $.each(model, function(k, v){
-          if(v != 'avg'){
-            if(typeof model[k] == undefined){
-              model[k] = 0; 
+          if(v != 'total'){
+            if(model[k] == null){
+              model[k] = 'Not enough games.'; 
             }
             html += '<td>' + model[k] + '</td>'; 
           }else{
