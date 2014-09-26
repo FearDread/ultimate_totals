@@ -5,6 +5,7 @@ define(['team'], function(){
       name:'Team',
       scores:[],
       handycap:0,
+      power:0,
       model:{
         'pflt':0,
         'palt':0,
