@@ -13,6 +13,7 @@ define('router',[
     });
 
     var init = function(){
+      console.log('router listening here');
       var app_router = new Router;
 
       app_router.on('initDB', function(){
@@ -22,6 +23,12 @@ define('router',[
 
       app_router.on('default', function(){
         app.log('No Route!');
+      });
+
+      app_router.on('/stats/data', function(){
+        var stats = {};
+      
+        return stats;
       });
 
       Backbone.history.start();

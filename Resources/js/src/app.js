@@ -17,6 +17,7 @@ define('app',[
       properties:null,
       ls:localStorage,
       fs:Ti.Filesystem,
+      path:Ti.API.applicaiton.dataPath,
       window:Ti.UI.currentWindow,
       log:function(message){
         if(this.debug){
@@ -69,6 +70,19 @@ define('app',[
           'Utah',
           'Washington'
         ],
+      },
+      pull_stats_data:function(){
+        var data = {}; 
+        $.get({'/stats/data',
+          success:function(res){
+            app.log(res);
+          
+          },
+          error:function(err){
+            app.log(err);    
+          }
+        }),
+        return data;
       },
       calculate_scores:function(team){
         var f = app.properties.getString('formula');
@@ -163,11 +177,10 @@ define('app',[
       },
       init:function(){
         var _this = this;
-        var userProperties;
-        var file = _this.fs.getFile(Ti.API.application.dataPath, 'user.properties');
+        var file = _this.fs.getFile(_this.path, 'user.properties');
 
         if(_this.debug){
-          app.window.showInspector(); 
+          _this.window.showInspector(); 
         }
 
         if(file.exists()){
@@ -178,7 +191,9 @@ define('app',[
               formula:'sanchez'
           });
         }
-        console.log(_this.properties);
+
+        // start router //
+        Router.init();
 
         (document, 'ready', function(app){
           _this.window.setTitle("ULTIMATE TOTALS");
