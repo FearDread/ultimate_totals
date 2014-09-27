@@ -6,7 +6,6 @@ define(['utils'],
   function(utils){
 
     return utils = {
-      
       log:function(message){
         console.log('UTILS: ', message); 
       },

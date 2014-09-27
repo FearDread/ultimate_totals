@@ -20,7 +20,6 @@ define('stats',[
           el: "#main-content",
           template: _.template($("#template-stats").html()),
           initialize:function(){
-            this.stats_menu();
             this.render();
           },
           render:function(){

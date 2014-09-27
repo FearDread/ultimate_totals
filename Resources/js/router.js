@@ -2,21 +2,24 @@ define('router',[
   'jquery',
   'underscore',
   'backbone',
-  'app'
-],function($, _, Backbone, app){
+],function(){
   
     var Router = Backbone.Router.extend({
       routes:{
-        '/':'initDB', 
+        '/':'test', 
+        '/stats':'stats',
         '*actions':'default'
       }
     });
 
     var init = function(){
-      console.log('router listening here');
-      var app_router = new Router;
+      var app_router = new Router();
 
-      app_router.on('initDB', function(){
+      app_router.on('test', function(){
+        console.log('test route hit in router'); 
+      });
+
+      app_router.on('DB', function(){
         app.log('init database here ... ');
       
       });
@@ -25,13 +28,15 @@ define('router',[
         app.log('No Route!');
       });
 
-      app_router.on('/stats/data', function(){
+      app_router.on('stats', function(){
         var stats = {};
-      
+        console.log('stats hit in router'); 
         return stats;
       });
 
       Backbone.history.start();
+      console.log(app_router);
+      return app_router;
     }
 
     return {

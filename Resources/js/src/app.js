@@ -17,7 +17,7 @@ define('app',[
       properties:null,
       ls:localStorage,
       fs:Ti.Filesystem,
-      path:Ti.API.applicaiton.dataPath,
+      path:Ti.API.application.dataPath,
       window:Ti.UI.currentWindow,
       log:function(message){
         if(this.debug){
@@ -73,22 +73,18 @@ define('app',[
       },
       pull_stats_data:function(){
         var data = {}; 
-        $.get({'/stats/data',
-          success:function(res){
-            app.log(res);
-          
-          },
-          error:function(err){
-            app.log(err);    
-          }
-        }),
+        $.get('app://com.mms.utotals/index.html', function(res){
+            console.log(res);
+        
+        });
+
         return data;
       },
       calculate_scores:function(team){
         var f = app.properties.getString('formula');
         var eq = new EQ(); 
-        eq.apply_formula(f,team);
 
+        eq.apply_formula(f,team);
         table.append_row(team);
       },
       predict_totals:function(obj){
