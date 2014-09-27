@@ -300,6 +300,7 @@ body {
 .results-div h2 {
   color: #FFF;
   text-shadow: 1px 1px 2px #000;
+  margin-left: 5px;
 }
 
 .results-div button {
