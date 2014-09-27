@@ -9,7 +9,7 @@
       <div class="main-nav">
         <ul>
           <li class='active totals'>
-            <a href="#totals">Totals</a>
+            <a href="#totals" title="Predict Totals">Totals</a>
           </li>
           <li class='bets'>
             <a href="#betting" title="Track Bets">Bets</a>
@@ -18,13 +18,13 @@
             <a href="#stats" title="Statistics">Stats</a>
           </li>
           <li class='reports'>
-            <a href='#reports'>Reports</a>
+            <a href='#reports' title="Reports">Reports</a>
           </li>
           <li class='formulas'>
-            <a href='#formulas'>Formulas</a>
+            <a href='#formulas' title='Create Formulas'>Formulas</a>
           </li>
           <li class='db'>
-            <a href="#database">Database</a>
+            <a href="#database" title='Manage Data'>Database</a>
           </li>
         </ul>
         <ul class="icon-nav">
@@ -45,31 +45,13 @@
         <div class='left team-game'>
           <span class='home-tab'>HOME</span>
           <form name='home-form' class='home-form'>
-          <div class='top'>
-            <label>Select Team</label>
+          <div class='form-group'>
+            <label>Team</label>
             <select class="team-select"></select>
-            <label>Handycap</label>
-            <select class='handycap'>
-              <option value='0'>+ / - 0</option>
-              <option value='1'>+ / - 1</option>
-              <option value='2'>+ / - 2</option>
-              <option value='3'>+ / - 3</option>
-              <option value='4'>+ / - 4</option>
-              <option value='5'>+ / - 5</option>
-              <option value='6'>+ / - 6</option>
-              <option value='7'>+ / - 7</option>
-              <option value='8'>+ / - 8</option>
-              <option value='9'>+ / - 9</option>
-              <option value='10'>+ / - 10</option>
-            </select>
           </div>
-          <div class='bottom'>
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <button class='white-btn add-score'>Add Score</button>
+          <div class='form-group'>
+            <label>Score</label>
+            <input type='text' name='score' placeholder='Game Score' />
           </div>
           </form>
         </div>
@@ -77,44 +59,26 @@
         <div class='right team-game away'>
           <span class='away-tab'>AWAY</span>
           <form name='away-form' class='away-form'>
-          <div class='top'>
-            <label>Select Team</label>
+          <div class='form-group'>
+            <label>Team</label>
             <select class="team-select"></select>
-            <label>Handycap</label>
-            <select class='handycap'>
-              <option value='0'>+ / - 0</option>
-              <option value='1'>+ / - 1</option>
-              <option value='2'>+ / - 2</option>
-              <option value='3'>+ / - 3</option>
-              <option value='4'>+ / - 4</option>
-              <option value='5'>+ / - 5</option>
-              <option value='6'>+ / - 6</option>
-              <option value='7'>+ / - 7</option>
-              <option value='8'>+ / - 8</option>
-              <option value='9'>+ / - 9</option>
-              <option value='10'>+ / - 10</option>
-            </select>
           </div>
-          <div class='bottom'>
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <input type='text' name='score' placeholder='Score' />
-            <button class='white-btn add-score'>Add Score</button>
+          <div class='form-group'>
+            <label>Score</label>
+            <input type='text' name='score' placeholder='Game Score' />
           </div>
           </form>
         </div>
         <div class='button-div'>
-          <button class='black-btn calc'>Predict</button>
-          <button class='black-btn calc-all'>All Scores</button>
+          <button class='black-btn totals'>Totals</button>
           <button class='black-btn save-game'>Save Game</button>
+          <button class='black-btn sides'>Sides</button>
         </div>
       </div>
       <div class="results-div">
-        <h2>RESULTS
-          <button class='blue-btn show-totals'>Totals</button>
-          <button class='blue-btn export-to-file'>Export</button>
+        <h2>MY GAMES 
+          <button class='blue-btn import-file'>Import</button>
+          <button class='blue-btn export-file'>Export</button>
         </h2>
         <table class='tablesorter results-table totals-table'>
           <thead></thead>

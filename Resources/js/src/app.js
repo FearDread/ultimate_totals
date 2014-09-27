@@ -2,7 +2,7 @@
  * @title: Ultimate Totals 
  * @author: Garrett Haptonstall
  * @desc: Application for easy
- * calculations of basketball totals
+ * calculations of sports totals
 *---------------------------------*/
 define('app',[
   'router',
@@ -176,8 +176,6 @@ define('app',[
         var _this = this;
         var file = _this.fs.getFile(_this.path, 'user.properties');
 
-        Router.initialize();
-
         if(_this.debug){
           _this.window.showInspector(); 
         }
@@ -186,10 +184,11 @@ define('app',[
           _this.properties = Ti.App.loadProperties(file);
         }else{
           _this.properties = Ti.App.createProperties({
-              version:'0.01',
               formula:'sanchez'
           });
         }
+
+        Router.init();
 
         (document, 'ready', function(app){
 

@@ -188,7 +188,7 @@ body {
 }
 
 .game-div {
-  min-height: 250px;
+  min-height: 180px;
   position: relative;
   margin-top: 50px;
 }
@@ -197,11 +197,26 @@ body {
   position: relative;
   width: 500px;
   display: inline-block;
-  min-height: 100px;
+  min-height: 70px;
   padding: 10px;
   border-radius: 5px;
   background: #FFF;
   -webkit-box-shadow: 1px 2px 1px #333;
+}
+
+.game-div .team-game .form-group {
+  display: inline-block;
+  width: 180px;
+  padding: 5px;
+  margin-left: 40px;
+}
+
+.game-div .team-game label {
+  display: block;
+}
+
+.game-div .team-game select {
+  font-size: 16px;
 }
 
 .game-div .team-game .home-tab {

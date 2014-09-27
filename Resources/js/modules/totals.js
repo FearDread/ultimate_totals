@@ -1,6 +1,9 @@
 define('totals',[
   'app',
-],function(app){
+  'team',
+  'game',
+  'games'
+],function(app, Team, Game, Games){
 
     return totals = {
       name:'totals',
@@ -8,39 +11,13 @@ define('totals',[
       bind_events:function(){
         var _this = this;
 
-        $('.team-game').bind('click', function(_e){
-          _this.append_score(_e);
-        });
-
-        $('.calc').bind('click', function(_e){
-          _this.prep_calc_data();
-        });
-
-        $('.calc-all').bind('click', function(_e){
-          var hf = $('form.home-form');
-          var af = $('form.away-form');
-          var vals = $.merge(hf.serializeArray(), af.serializeArray());
-
-          if(vals[0].value == ''){
-            alert('You must enter at least two scores for at least one team.');
-            return;
-          } 
-
-          app.predict_all_teams(vals);
-        });
-
         $('.save-game').bind('click', function(_e){
           _e.preventDefault();
-          app.save_game(); 
+          _this.save_game_data(); 
         });
 
         $('.show-totals').bind('click', function(_e){
-          if($('tbody').children('td').length > 0){
 
-          }else{
-          
-            alert('You must calculate first.');
-          }
         });
       },
       append_score:function(_e){
@@ -54,6 +31,9 @@ define('totals',[
           var input = '<input type="text" name="score" placeholder="Score" />';
           f.prepend(input);
         }
+      },
+      save_game_data:function(){
+      
       },
       build_select:function(){
         var i = 0,

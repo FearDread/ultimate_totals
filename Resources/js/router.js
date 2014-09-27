@@ -23,14 +23,14 @@ define('router',[
       }
     });
 
-    var initialize = function(){
+    var init = function(){
       var app_router = new Router();
 
       Backbone.history.start();
     }
 
     return {
-      initialize:initialize
+      init:init
     }
   }
 );
