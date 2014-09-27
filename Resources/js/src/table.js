@@ -4,7 +4,8 @@
 *---------------------------------*/
 define('table',[
   'teams',
-  'utils'
+  'utils',
+  //'libs/jquery/plugins/jquery.tablesorter.min'
 ],function(utils, Teams){
 
     return table = {

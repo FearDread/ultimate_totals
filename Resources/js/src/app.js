@@ -9,8 +9,9 @@ define('app',[
   'team',
   'teams',
   'utils',
-  'table'
-],function(Router, Team, Teams, utils, table){
+  'table',
+  'sdata'
+],function(Router, Team, Teams, utils, table, sdata){
 
     return app = {
       data:{},
@@ -20,8 +21,6 @@ define('app',[
       fs:Ti.Filesystem,
       path:Ti.API.application.dataPath,
       window:Ti.UI.currentWindow,
-      NBAKey:'395ykxy34yqan3txm5zaqv6u',
-      NFLKey:'gws9ztcsw6qdbtbvu8kpnxdn',
       log:function(message){
         if(this.debug){
           console.log('DEBUG: ', message);
@@ -40,6 +39,10 @@ define('app',[
         require([view], function(view){
           return new view().render(); 
         });
+      },
+      load_season:function(){
+        console.log('season data here');
+        this.data = sdata.get_standings(); 
       },
       teams:{
         list:[
@@ -188,7 +191,11 @@ define('app',[
           });
         }
 
+        /* Initialize router */
         Router.init();
+
+        // load data //
+        _this.load_season();
 
         (document, 'ready', function(app){
 

@@ -39,7 +39,7 @@ define('stats',[
             return this;
           },
           events:{
-            'load':_this.load_stats()
+            'ready':_this.load_stats()
           }
         });
 
