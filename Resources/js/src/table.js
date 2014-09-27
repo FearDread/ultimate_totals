@@ -3,10 +3,9 @@
  * @author: Garrett Haptonstall
 *---------------------------------*/
 define('table',[
-  'utils',
-  'sorter',
-  'teams'
-],function(utils, sorter, Teams){
+  'teams',
+  'utils'
+],function(utils, Teams){
 
     return table = {
       headers:[

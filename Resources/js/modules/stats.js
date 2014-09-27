@@ -1,5 +1,6 @@
 define('stats',[
-  'app'
+  'app',
+  'libs/jquery/plugins/jquery.xmltojson'
 ],function(app){
 
     return stats = {
@@ -10,7 +11,13 @@ define('stats',[
       },
       load_stats:function(){
         this.model = app.get_data();
-        console.log(this.model);
+        var json = $.xml2json(this.model);
+
+        var season = json.season;
+        var conf = season.conference;
+            
+        var i = 0;
+        console.log(json);
       },
       bind_events:function(){
 
@@ -24,7 +31,7 @@ define('stats',[
             this.render();
           },
           render:function(){
-            var html = this.template(_this.model);
+            var html = this.template();
 
             this.$el.html(html);
             _this.bind_events();

@@ -1,8 +1,6 @@
 define('reports',[
-  'app',
-  'utils',
-  'router'
-],function(app, utils, Router){
+  'app'
+],function(app){
 
     return reports = {
       name:'reports',
@@ -23,7 +21,6 @@ define('reports',[
             var html = this.template(obj);
 
             this.$el.html(html);
-
             _this.bind_events();
 
             return this;
@@ -37,7 +34,7 @@ define('reports',[
       }, 
       init:function(){
         var _this = this;
-        utils.update_active('reports');
+        app.update_active('reports');
 
         (document, 'ready', function(reports){
 

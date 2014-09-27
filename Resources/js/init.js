@@ -7,7 +7,6 @@ require.config({
   paths: {
     // libraries //
     jquery:'libs/jquery/jquery.min',
-    sorter:'libs/jquery/plugins/jquery.tablesorter.min',
     backbone:'libs/backbone/backbone-min',
     underscore:'libs/underscore/underscore-min',
     // DB //
@@ -22,9 +21,11 @@ require.config({
     // models //
     bet:'models/bet',
     team:'models/team',
+    game:'models/game',
     // collections //
     teams:'collections/teams',
     bets:'collections/bets',
+    games:'collections/games',
     // modules //
     stats:'modules/stats',
     help:'modules/help',
@@ -45,13 +46,6 @@ require.config({
       exports:'Backbone',
       deps:['jquery','underscore']
     },
-    sorter:{
-      exports:'tableSorter',
-      deps:['jquery']
-    },
-    table:{
-      exports:'table'
-    }
   }
 });
 require([
@@ -67,6 +61,5 @@ require([
 
     /* Initialize Application */
     app.init();
-
   }
 );
