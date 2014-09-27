@@ -10,6 +10,10 @@ define('stats',[
       stats_menu:function(){
       
       },
+      load_stats:function(){
+        this.model = app.get_stats();
+
+      },
       bind_events:function(){
 
       },
@@ -19,11 +23,10 @@ define('stats',[
           el: "#main-content",
           template: _.template($("#template-stats").html()),
           initialize:function(){
-            _this.data = _this.pull_stats_data()
             this.render();
           },
           render:function(){
-            var obj = {};
+            var obj = _this.load_stats();
             var html = this.template(obj);
 
             this.$el.html(html);

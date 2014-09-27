@@ -19,6 +19,8 @@ define('app',[
       fs:Ti.Filesystem,
       path:Ti.API.application.dataPath,
       window:Ti.UI.currentWindow,
+      NBAKey:'395ykxy34yqan3txm5zaqv6u',
+      NFLKey:'gws9ztcsw6qdbtbvu8kpnxdn',
       log:function(message){
         if(this.debug){
           console.log('DEBUG: ', message);
@@ -71,9 +73,10 @@ define('app',[
           'Washington'
         ],
       },
-      pull_stats_data:function(){
-        var data = {}; 
-        Backbone.history.navigate('stats', true);
+      get_stats:function(){
+        console.log(this.stats_data);
+
+        return this.stats;
       },
       calculate_scores:function(team){
         var f = app.properties.getString('formula');
