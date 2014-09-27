@@ -73,12 +73,7 @@ define('app',[
       },
       pull_stats_data:function(){
         var data = {}; 
-        $.get('app://com.mms.utotals/index.html', function(res){
-            console.log(res);
-        
-        });
-
-        return data;
+        Backbone.history.navigate('stats', true);
       },
       calculate_scores:function(team){
         var f = app.properties.getString('formula');
@@ -188,8 +183,7 @@ define('app',[
           });
         }
 
-        // start router //
-        Router.init();
+        Router.initialize();
 
         (document, 'ready', function(app){
           _this.window.setTitle("ULTIMATE TOTALS");

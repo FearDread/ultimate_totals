@@ -1,18 +1,17 @@
 define('stats',[
   'app',
   'utils',
-  'router'
 ],function(app, utils){
 
     return stats = {
       name:'stats',
       model:null,
+      data:{},
       stats_menu:function(){
       
       },
       bind_events:function(){
-      
-        app.pull_stats_data();
+
       },
       load_view:function(){
         var _this = this;
@@ -20,6 +19,7 @@ define('stats',[
           el: "#main-content",
           template: _.template($("#template-stats").html()),
           initialize:function(){
+            _this.data = _this.pull_stats_data()
             this.render();
           },
           render:function(){
