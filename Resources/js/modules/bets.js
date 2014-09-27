@@ -1,9 +1,8 @@
 define('betting',[
   'app',
-  'utils',
   'bet',
   'bets'
-],function(app, utils, Bet, Bets){
+],function(app, Bet, Bets){
 
     return betting = {
       name:'bets',
@@ -99,7 +98,7 @@ define('betting',[
       },
       init:function(){
         var _this = this;
-        utils.update_active('bets');
+        app.update_active('bets');
 
         (document, 'load', function(betting){
 

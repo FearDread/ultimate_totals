@@ -64,10 +64,6 @@ define(['utils'],
         var mark = to.offset();
         $('html, body').animate({scrollTop:mark.top - 50}, 'slow');
       },
-      update_active:function(p){
-        $('.main-nav ul li').removeClass('active');
-        $('.main-nav ul li.' + p).addClass('active');
-      },
       size:function(Object){
         var Number = 0, key;
         for(key in Object){

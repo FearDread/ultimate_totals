@@ -1,7 +1,6 @@
 define('formulas',[
   'app'
-  'utils'
-],function(app, utils){
+],function(app){
 
     return formulas = {
       name:'formulas',

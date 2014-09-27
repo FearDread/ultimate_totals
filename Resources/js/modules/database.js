@@ -1,8 +1,6 @@
 define('database',[
   'app',
-  'utils',
-  'router'
-],function(app, utils, Router){
+],function(app){
 
     return database = {
       name:'database',
@@ -23,7 +21,6 @@ define('database',[
             var html = this.template(obj);
 
             this.$el.html(html);
-
             _this.bind_events();
 
             return this;
@@ -37,7 +34,7 @@ define('database',[
       }, 
       init:function(){
         var _this = this;
-        utils.update_active('db');
+        app.update_active('db');
 
         (document, 'ready', function(database){
 

@@ -7,24 +7,34 @@ define('router',[
     var Router = Backbone.Router.extend({
       routes:{
         'totals':'totals',
-        'stats':'stats'
+        'betting':'bets',
+        'stats':'stats',
+        'formulas':'formulas',
+        'database':'database',
+        'reports':'reports'
       },
       totals:function(){
-        console.log('totals route hit.');
-      
+        app.load_module('totals');
+      },
+      bets:function(){
+        app.load_module('betting');
       },
       stats:function(){
-        console.log('stats route hit.');
-        var url = 'https://api.sportsdatallc.org/nba-trial3/seasontd/2014/reg/standings.xml?api_key=' + app.NBAKey;
-        console.log($);
-        console.log(url);
+        var url = 'https://api.sportsdatallc.org/nba-t3/seasontd/2014/reg/standings.xml?api_key=' + app.NBAKey;
         $.get(url, function(res){
-            console.log(url);
-            console.log(res);
-            app.stats_data = res;
-        
+            app.data = res;
+            app.load_module('stats');
           }
         );
+      },
+      formulas:function(){
+        app.load_module('formulas');
+      },
+      database:function(){
+        app.load_module('database');
+      },
+      reports:function(){
+        app.load_module('reports');
       }
     });
 

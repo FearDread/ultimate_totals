@@ -1,18 +1,16 @@
 define('stats',[
-  'app',
-  'utils',
-],function(app, utils){
+  'app'
+],function(app){
 
     return stats = {
       name:'stats',
       model:null,
-      data:{},
       stats_menu:function(){
       
       },
       load_stats:function(){
-        this.model = app.get_stats();
-
+        this.model = app.get_data();
+        console.log(this.model);
       },
       bind_events:function(){
 
@@ -26,8 +24,7 @@ define('stats',[
             this.render();
           },
           render:function(){
-            var obj = _this.load_stats();
-            var html = this.template(obj);
+            var html = this.template(_this.model);
 
             this.$el.html(html);
             _this.bind_events();
@@ -35,14 +32,15 @@ define('stats',[
             return this;
           },
           events:{
-            'load':app.log('news view loaded')
+            'load':_this.load_stats()
           }
         });
+
         new view(); 
       },
       init:function(){
         var _this = this;
-        utils.update_active('stats');
+        app.update_active('stats');
 
         (document, 'load', function(stats){
 

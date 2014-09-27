@@ -13,6 +13,7 @@ define('app',[
 ],function(Router, Team, Teams, utils, table){
 
     return app = {
+      data:{},
       debug:true,
       properties:null,
       ls:localStorage,
@@ -25,6 +26,9 @@ define('app',[
         if(this.debug){
           console.log('DEBUG: ', message);
         }
+      },
+      get_data:function(){
+        return this.data;
       },
       load_module:function(module){
         require([module], function(module){
@@ -73,10 +77,9 @@ define('app',[
           'Washington'
         ],
       },
-      get_stats:function(){
-        console.log(this.stats_data);
-
-        return this.stats;
+      update_active:function(page){
+        $('.main-nav ul li').removeClass('active');
+        $('.main-nav ul li.' + page).addClass('active');
       },
       calculate_scores:function(team){
         var f = app.properties.getString('formula');
@@ -173,6 +176,8 @@ define('app',[
         var _this = this;
         var file = _this.fs.getFile(_this.path, 'user.properties');
 
+        Router.initialize();
+
         if(_this.debug){
           _this.window.showInspector(); 
         }
@@ -186,18 +191,10 @@ define('app',[
           });
         }
 
-        Router.initialize();
-
         (document, 'ready', function(app){
+
           _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
-
-          $('.main-nav ul li').bind('click', function(_e){
-            var name = $(this).children('a').attr('href'); 
-            name = name.split('#')[1];
-
-            _this.load_module(name); 
-          });
         
         })(this);
       }

@@ -1,7 +1,6 @@
 define('totals',[
   'app',
-  'utils',
-],function(app, utils){
+],function(app){
 
     return totals = {
       name:'totals',
@@ -118,7 +117,7 @@ define('totals',[
       },
       init:function(){
         var _this = this;
-        utils.update_active('totals');
+        app.update_active('totals');
 
         (document, 'load', function(totals){
 
