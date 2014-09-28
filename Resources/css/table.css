@@ -66,6 +66,7 @@
       font-family:Arial;
       font-weight:normal;
       color:#000000;
+      height: 30px;
     }.totals-table tr:last-child td{
       border-width:0px 1px 0px 0px;
     }.totals-table tr td:last-child{

@@ -15,8 +15,10 @@ define('app',[
 ],function(Router, Team, Teams, utils, table){
 
     return app = {
-      data:{},
       debug:true,
+      season:null,
+      rankings:null,
+      standings:null,
       properties:null,
       ls:localStorage,
       fs:Ti.Filesystem,
@@ -27,8 +29,8 @@ define('app',[
           console.log('DEBUG: ', message);
         }
       },
-      get_data:function(){
-        return this.data;
+      get_data:function(prop){
+        return this[prop];
       },
       load_module:function(module){
         require([module], function(module){
@@ -40,11 +42,6 @@ define('app',[
         require([view], function(view){
           return new view().render(); 
         });
-      },
-      load_season:function(){
-        console.log('season data here');
-        var sd = new sdata();
-        this.data = sd.get_standings(); 
       },
       teams:{
         list:[
@@ -136,11 +133,13 @@ define('app',[
           });
         }
 
-        /* Initialize router */
         Router.init();
 
-        // load data //
-        _this.load_season();
+        // add loading icon upon app init for these data calls //
+        var sd = new sdata();
+        _this.standings = sd.get_standings(); 
+        // _this.season = sd.get_season();
+        // _this.rankings = sd.get_rankings();
 
         (document, 'ready', function(app){
 

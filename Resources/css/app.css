@@ -330,56 +330,6 @@ body {
   top: -7px;
 }
 
-table {
-  cursor: pointer;
-  margin-bottom: 20px;
-  width: 625px;
-  min-height: 200px;
-  border: 2px dashed #CCC;
-  border-radius: 5px;
-  padding: 10px;
-  border: none;
-  background: transparent;
-}
-
-table thead {
-  height: 30px;
-  background: #3598DB;
-  padding: 5px;
-  color: #FFF;
-}
-
-table thead th {
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #333;
-}
-
-table tbody {
-  background: #F5F5F6;
-}
-
-table tbody tr {
-  height: 30px;
-  border-bottom: 1px solid #D8D8D8;
-  padding: 5px;
-}
-
-table tbody tr td:hover {
-  background: rgba(0,149,205,.5);
-  color: #FFF;
-}
-
-table tbody tr td {
-  width: 200px;
-  height: 35px;
-  padding: 5px;
-  font-size: 15px;
-  font-weight: normal;
-  color: #333
-}
-
 .new-bet{
   position: relative;
   width: 1000px;

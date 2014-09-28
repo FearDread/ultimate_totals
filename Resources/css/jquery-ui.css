@@ -314,6 +314,9 @@ button.ui-button::-moz-focus-inner {
 	padding: .2em .2em 0;
 	display: none;
 }
+.ui-datepicker table thead {
+  color: #FFF;
+}
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
 	padding: .2em 0;

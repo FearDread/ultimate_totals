@@ -17,12 +17,12 @@ define('totals',[
           _this.prep_game_data();
         });
 
-        $('.totals').bind('click', function(_e){
+        $('.calc-totals').bind('click', function(_e){
           _e.preventDefault();
 
         });
 
-        $('.sides').bind('click', function(_e){
+        $('.calc-sides').bind('click', function(_e){
           _.preventDefault();
 
         });
