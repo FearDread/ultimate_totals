@@ -10,7 +10,7 @@ define('game',[
       total:0,
     },
     save_game:function(){
-      var sql = 'insert into Game (date,home,away,home_score,away_score,total) '
+      var sql = 'insert into Games (date,home,away,home_score,away_score,total) '
       + 'values ("' + this.get('date') + '","' + this.get('home').get('name') + '","' 
       + this.get('away').get('name') + '",' + this.get('home').get('score') + ',' + this.get('away').get('score') + ','
       + this.get('total') + ')';

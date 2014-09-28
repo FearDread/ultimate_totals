@@ -1,7 +1,8 @@
 define('betting',[
   'app',
   'bet',
-  'bets'
+  'bets',
+  'libs/jquery/jquery-ui.min'
 ],function(app, Bet, Bets){
 
     return betting = {
@@ -14,7 +15,8 @@ define('betting',[
           _e.preventDefault();
           _this.save_new_bet(); 
         });
-      
+
+        $('.datepicker').datepicker();
       },
       add_all_bets:function(){
         $('thead').empty();
@@ -32,27 +34,32 @@ define('betting',[
          'result':'Result',
          'payout':'Payout'
         };
-
         var tr = '<tr>';
-        $.each(head, function(k,th){
-          tr += '<th>' + th + '</th>';
-        });
 
+        for(var k in head){
+          if(head.hasOwnProperty(k)){
+            tr += '<th>' + head[k] + '</th>';
+          }
+        }
         tr += '</tr>'; 
         $('thead').append(tr);
 
-        do {
-          var html = '<tr>';
+        if(rows.rowCount() > 0){
 
-          $.each(head, function(k,th){
-            html += '<td>' + rows.fieldByName(k) + '</td>'; 
-          });
+          do {
+            var html = '<tr>';
 
-          html += '</tr>';
-          $('tbody').append(html);
+            for(var k in head){
+              if(head.hasOwnProperty(k)){
+                html += '<td>' + rows.fieldByName(k) + '</td>'; 
+              }
+            }
+            html += '</tr>';
+            $('tbody').append(html);
 
-          rows.next();
-        } while(rows.isValidRow());
+            rows.next();
+          } while(rows.isValidRow());
+        }
       },
       save_new_bet:function(){
         var i = 0,
@@ -79,9 +86,7 @@ define('betting',[
             this.render();
           },
           render:function(){
-            var obj = {};
-            var html = this.template(obj);
-
+            var html = this.template();
             this.$el.html(html);
 
             _this.bind_events();

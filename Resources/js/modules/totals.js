@@ -2,7 +2,8 @@ define('totals',[
   'app',
   'team',
   'game',
-  'games'
+  'games',
+  'libs/jquery/jquery-ui.min'
 ],function(app, Team, Game, Games){
 
     return totals = {
@@ -23,8 +24,10 @@ define('totals',[
 
         $('.sides').bind('click', function(_e){
           _.preventDefault();
-        
+
         });
+
+        $('.datepicker').datepicker();
       },
       append_score:function(_e){
         _e.stopPropagation();
@@ -91,7 +94,7 @@ define('totals',[
         game.set('total', home_team.get('score') + away_team.get('score'));
         game.save_game();
 
-        this.add_game(game);
+        this.add_all_games();
       },
       add_all_games:function(){
         $('thead').empty();
@@ -107,32 +110,32 @@ define('totals',[
           'away_score':'Away Score',
           'total':'Game Total'
         };
-
         var tr = '<tr>';
-        for(var i = 0; i < head.length; i++){
-          var row = head[i];
-          tr += '<th>' + row[1] + '</th>';
-        }
 
+        for(var k in head){
+          if(head.hasOwnProperty(k)){
+            tr += '<th>' + head[k] + '</th';
+          }
+        }
         tr += '</tr>';
         $('thead').append(tr);
       
-        do {
-          var html = '<tr>';
+        if(rows.rowCount() > 0){
 
-          for(var x = 0; x < head.length; x++){
-            var obj = head[x];
-            html += '<td>' + rows.fieldByName(obj[0]) + '</td>';
+          do {
+            var html = '<tr>';
+
+            for(var k in head){
+              if(head.hasOwnProperty(k)){
+                html += '<td>' + rows.fieldByName(k) + '</td>';
+              }
+            }
+            html += '</tr>';
+            $('tbody').append(html);
           
-          }
-
-          html += '</tr>';
-          $('tbody').append(html);
-        
-        } while(rows.isValidRow());
-      },
-      add_game:function(){
-      
+            rows.next();
+          } while(rows.isValidRow());
+        }
       },
       build_select:function(){
         var i = 0,
@@ -163,12 +166,13 @@ define('totals',[
             this.$el.html(html);
 
             _this.build_select();
+            _this.add_all_games();
             _this.bind_events();
 
             return this;
           },
           events:{
-            "ready":_this.add_all_games()
+            'load':app.log('totals view loaded')
           },
         });
 

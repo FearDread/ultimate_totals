@@ -198,11 +198,15 @@ body {
   display: block;
   text-align: center;
   font-weight: normal;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .date-div input[type='text'] {
   padding: 5px;
   text-align: center;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
 .game-div {
