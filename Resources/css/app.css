@@ -403,6 +403,37 @@ body {
   margin-top: 30px;
 }
 
+.stats-div {
+
+}
+
+.stats-div .stats-menu {
+  width: 1000px;
+  margin: auto;
+  margin-top: 40px;
+
+}
+.stats-div .stats-menu .tabs {
+  min-height: 400px;
+}
+.stats-div .stats-menu .tabs ul {
+  font-size: 12px;
+  height: 30px;
+}
+.stats-div .stats-menu .tabs .sub-stats {
+  margin: 30px;
+  background: #FFF;
+  border-radius: 5px;
+  min-height: 300px;
+}
+
+.tabs .sub-stats h2 {
+  color: #000;
+  letter-spacing: 1.2px;
+  text-shadow: 1px 1px 1px #BBB;
+  text-align: center;
+}
+
 .footer p {
   font-size: 10px;
   font-weight: 300;

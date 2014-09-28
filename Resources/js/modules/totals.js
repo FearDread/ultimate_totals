@@ -29,18 +29,6 @@ define('totals',[
 
         $('.datepicker').datepicker();
       },
-      append_score:function(_e){
-        _e.stopPropagation();
-        var target = $(_e.target);
-        var container = target.closest('div.team-game');
-
-        if(target.hasClass('add-score')){
-          _e.preventDefault();
-          var f = $('.bottom', container); 
-          var input = '<input type="text" name="score" placeholder="Score" />';
-          f.prepend(input);
-        }
-      },
       prep_game_data:function(){
         var data = {};
         var hf = $('form.home-form');
@@ -55,6 +43,10 @@ define('totals',[
 
         data.away['team'] = $('select.team-select', af).val();
         data.away['score'] = $('input[name="score"]', af).val();
+
+        hf[0].reset();
+        af[0].reset();
+        $('input[name="game_date"]').val('');
 
         this.save_game_data(data);
       },
@@ -167,6 +159,7 @@ define('totals',[
 
             _this.build_select();
             _this.add_all_games();
+
             _this.bind_events();
 
             return this;

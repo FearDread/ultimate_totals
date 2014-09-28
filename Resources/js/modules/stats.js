@@ -1,17 +1,23 @@
 define('stats',[
   'app',
+  'libs/jquery/jquery-ui.min',
   'libs/jquery/plugins/jquery.xmltojson'
 ],function(app){
 
     return stats = {
       name:'stats',
       model:null,
-      stats_menu:function(){
-      
+      bind_events:function(){
+
+        $('#tabs').tabs();
+        this.add_header();
+
       },
       load_stats:function(){
-        this.model = app.get_data('standings');
-        this.model.success(function(res){
+        var _this = this;
+
+        _this.model = app.get_data('standings');
+        _this.model.success(function(res){
           var json = $.xml2json(res);
 
           if(json != undefined){
@@ -33,8 +39,7 @@ define('stats',[
 
                   for(var y = 0; y < teams.length; y++){
                     var team = teams[y];
-
-                    console.log(team);
+                    _this.add_row(team);
                   }
                 
                   x++
@@ -46,8 +51,30 @@ define('stats',[
           }
         });
       },
-      bind_events:function(){
+      add_header:function(){
+        var tbl = $('.standings-tbl'),
+            keys = ['Team','City','Point Diff','Points For','Points Against','Wins','Losses','Win %'],
+            i = 0,
+            len = keys.length;
 
+        var tr = '<tr>';
+
+        do {
+          console.log(keys[i]);
+          tr += '<th>' + keys[i] + '</th>';
+        
+          i++;
+        } while(--len);
+
+        tr += '</tr>';
+        $('thead', tbl).append(tr);
+      },
+      add_row:function(team){
+        var tbl = $('.stats-table'),
+            tbody = $('tbody',tbl);
+            tbody.empty();
+
+        console.log(team);
       },
       load_view:function(){
         var _this = this;
