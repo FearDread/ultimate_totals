@@ -1,6 +1,7 @@
 define('stats',[
   'app',
   'libs/jquery/jquery-ui.min',
+  'libs/jquery/plugins/jquery.tablesorter.min',
   'libs/jquery/plugins/jquery.xmltojson'
 ],function(app){
 
@@ -8,13 +9,34 @@ define('stats',[
       name:'stats',
       model:null,
       bind_events:function(){
+        var _this = this;
 
         $('#tabs').tabs();
-        this.add_header();
+        $('#tabs').bind('tabsshow', function(_e, ui){
+
+          switch(ui.index){
+            case 0:
+              _this.load_stats();
+              break;
+            case 1:
+              _this.load_ranks();
+              break;
+            case 2:
+              _this.load_season();
+              break;
+            case 3:
+              _this.load_schedual();
+              break;
+          }
+        });
 
       },
       load_stats:function(){
-        var _this = this;
+        var _this = this,
+            tbl = $('.standings-tbl'),
+            keys = ['Team','City','Point Diff','Points For','Points Against','Wins','Losses','Win %'];
+
+        _this.add_header(tbl, keys);
 
         _this.model = app.get_data('standings');
         _this.model.success(function(res){
@@ -48,19 +70,18 @@ define('stats',[
             
               i++;
             } while(--len);
+            tbl.tablesorter();
           }
         });
       },
-      add_header:function(){
-        var tbl = $('.standings-tbl'),
-            keys = ['Team','City','Point Diff','Points For','Points Against','Wins','Losses','Win %'],
-            i = 0,
+      add_header:function(tbl, keys){
+        var i = 0,
+            tr = '<tr>',
             len = keys.length;
 
-        var tr = '<tr>';
+        $('thead', tbl).empty();
 
         do {
-          console.log(keys[i]);
           tr += '<th>' + keys[i] + '</th>';
         
           i++;
@@ -70,11 +91,22 @@ define('stats',[
         $('thead', tbl).append(tr);
       },
       add_row:function(team){
-        var tbl = $('.stats-table'),
+        var tbl = $('.standings-tbl'),
+            keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'],
             tbody = $('tbody',tbl);
-            tbody.empty();
 
-        console.log(team);
+        var tr = '<tr>';
+        for(var obj in team){
+
+          if(keys.indexOf(obj) > -1){
+
+            if(typeof team[obj] == 'string'){
+              tr += '<td>' + team[obj] + '</td>';
+            }
+          }
+        }
+        tr += '</tr>';
+        tbody.append(tr);
       },
       load_view:function(){
         var _this = this;

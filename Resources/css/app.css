@@ -25,6 +25,7 @@ body {
 
 .blue-btn {
   color: #d9eef7;
+  font-size: 12px;
   border: solid 1px #0076a3;
   background: #0095cd;
   background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
@@ -432,6 +433,13 @@ body {
   letter-spacing: 1.2px;
   text-shadow: 1px 1px 1px #BBB;
   text-align: center;
+}
+.tabs .sub-stats .print {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  font-size: 12px;
+
 }
 
 .footer p {
