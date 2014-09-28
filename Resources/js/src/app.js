@@ -11,8 +11,7 @@ define('app',[
   'game',
   'games',
   'utils',
-  'table',
-],function(Router, Team, Teams, utils, table){
+],function(Router, Team, Teams, utils){
 
     return app = {
       debug:true,
@@ -88,7 +87,6 @@ define('app',[
         var eq = new EQ(); 
 
         eq.apply_formula(f,team);
-        table.append_row(team);
       },
       predict_all_teams:function(obj){
         var y = 0;
@@ -115,7 +113,8 @@ define('app',[
           y++;
         } while(--tms);
 
-        table.build_table(teams);
+        // table deprecated
+        //table.build_table(teams);
       },
       init:function(){
         var _this = this;
