@@ -16,7 +16,6 @@ require.config({
     // main application modules //
     app:'src/app',
     menu:'src/menu',
-    sdata:'src/sdata',
     utils:'src/utils',
     table:'src/table',
     // models //

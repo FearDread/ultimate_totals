@@ -7,7 +7,7 @@ define(['DB'], function(){
     create:function(){
       var tables = [
         "create table if not exists Bets(id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT,pick TEXT,date TEXT,comment TEXT, market TEXT, stakes TEXT, odds TEXT,result TEXT, payout TEXT);",
-        "create table if not exists Games(id INTEGER PRIMARY KEY AUTOINCREMENT,team TEXT,pf TXT,pa TEXT,hf TEXT,ha TEXT,af TEXT,aa TEXT,average TEXT)"
+        "create table if not exists Games(id INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT,home TEXT,away TEXT,home_score INTEGER,away_score INTEGER,total INTEGER);"
       ];
 
       var i = 0;

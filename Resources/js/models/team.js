@@ -3,7 +3,7 @@ define(['team'], function(){
   var Team = Backbone.Model.extend({
     defaults:{
       name:'Team',
-      scores:[],
+      score:0,
       handycap:0,
       power:0,
       model:{
@@ -15,9 +15,6 @@ define(['team'], function(){
         'apft':0,
         'total':0
       },
-      save_team:function(){
-
-      }
     }
   });
 

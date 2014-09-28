@@ -8,10 +8,11 @@ define('app',[
   'router',
   'team',
   'teams',
+  'game',
+  'games',
   'utils',
   'table',
-  'sdata'
-],function(Router, Team, Teams, utils, table, sdata){
+],function(Router, Team, Teams, utils, table){
 
     return app = {
       data:{},
@@ -42,7 +43,8 @@ define('app',[
       },
       load_season:function(){
         console.log('season data here');
-        this.data = sdata.get_standings(); 
+        var sd = new sdata();
+        this.data = sd.get_standings(); 
       },
       teams:{
         list:[
@@ -92,49 +94,6 @@ define('app',[
         table.append_row(team);
       },
       predict_totals:function(obj){
-        var i = 0;
-        var types = ['home', 'away'];
-        var len = types.length;
-
-        do {
-          var type = types[i]; 
-          var arr = obj[type];
-
-          if(type == 'home'){
-            var home_team = new Team();
-            var new_scores = _.clone(home_team.get('scores'));
-
-            home_team.set('name', obj[type].team);
-            home_team.set('handycap', obj[type].handycap);
-
-            for(var x = 0; x < arr.length; x++){
-              var s = arr[x].value;
-
-              if(parseInt(s, 10) > 0){
-                new_scores.push(s);
-              }
-            }
-            home_team.set('scores', new_scores);
-
-          }else{
-            var away_team = new Team();
-            var new_scores = _.clone(away_team.get('scores'));
-
-            away_team.set('name', obj[type].team);
-            away_team.set('handycap', obj[type].handycap);
-
-            for(var x = 0; x < arr.length; x++){
-              var s = arr[x].value;
-              
-              if(parseInt(s, 10) > 0){
-                new_scores.push(s);
-              }
-            }
-            away_team.set('scores', new_scores);
-          }
-
-          i++;
-        } while(--len);
 
         table.clear();
         table.refresh_headers();

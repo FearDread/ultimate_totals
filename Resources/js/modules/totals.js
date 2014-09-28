@@ -13,7 +13,7 @@ define('totals',[
 
         $('.save-game').bind('click', function(_e){
           _e.preventDefault();
-          _this.save_game_data(); 
+          _this.prep_game_data();
         });
 
         $('.show-totals').bind('click', function(_e){
@@ -32,8 +32,58 @@ define('totals',[
           f.prepend(input);
         }
       },
-      save_game_data:function(){
+      prep_game_data:function(){
+        var data = {};
+        var hf = $('form.home-form');
+        var af = $('form.away-form');
       
+        data.date = $('input[name="game_date"]').val();
+        data.home = {};
+        data.away = {};
+
+        data.home['team'] = $('select.team-select', hf).val();
+        data.home['score'] = $('input[name="score"]', hf).val();
+
+        data.away['team'] = $('select.team-select', af).val();
+        data.away['score'] = $('input[name="score"]', af).val();
+
+        this.save_game_data(data);
+      },
+      save_game_data:function(obj){
+        var i = 0;
+        var types = ['home', 'away'];
+        var len = types.length;
+        var game = new Game(); 
+
+        game.set('date', obj.date);
+
+        do {
+          var type = types[i]; 
+          var arr = obj[type];
+
+          if(type == 'home'){
+            var home_team = new Team();
+
+            home_team.set('name', obj[type].team);
+            home_team.set('score', parseInt(obj[type].score)); 
+
+            game.set('home', home_team);
+
+          }else{
+            var away_team = new Team();
+
+            away_team.set('name', obj[type].team);
+            away_team.set('score', parseInt(obj[type].score));
+
+            console.log(away_team);
+            game.set('away', away_team);
+          }
+
+          i++;
+        } while(--len);
+
+        game.set('total', home_team.get('score') + away_team.get('score'));
+        game.save_game();
       },
       build_select:function(){
         var i = 0,
@@ -50,26 +100,6 @@ define('totals',[
         
           i++;
         } while(--len);
-      },
-      prep_calc_data:function(){
-        var data = {};
-        var hf = $('form.home-form');
-        var af = $('form.away-form');
-
-        data.home = hf.serializeArray();
-        data.home['team'] = $('select.team-select', hf).val();
-        data.home['handycap'] = $('select.handycap', hf).val();
-
-        data.away = af.serializeArray();
-        data.away['team'] = $('select.team-select', af).val();
-        data.away['handycap'] = $('select.handycap', af).val();
-
-        if(data.home[0].value == ''){
-          alert('You must fill out at least two scores for at least one team.');
-          return; 
-        }
-
-        app.predict_totals(data);
       },
       load_view:function(){
         var _this = this;

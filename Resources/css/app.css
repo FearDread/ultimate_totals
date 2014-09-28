@@ -90,7 +90,7 @@ body {
 
 .vs {
   position: absolute;
-  top: 60px;
+  top: 45px;
   left: 49%;
   color: #FFF;
   text-shadow: 1px 1px 2px #000;
@@ -185,6 +185,24 @@ body {
   font-style:italic;
   margin-top: -20px;
   text-shadow: 1px 1px 1px #000;
+}
+
+.date-div {
+  position: absolute;
+  top: 60px;
+  left: 487px;
+  color: #FFF;
+}
+
+.date-div label {
+  display: block;
+  text-align: center;
+  font-weight: normal;
+}
+
+.date-div input[type='text'] {
+  padding: 5px;
+  text-align: center;
 }
 
 .game-div {
