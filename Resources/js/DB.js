@@ -3,7 +3,7 @@ define(['DB'], function(){
   var DB = {
     db:Ti.Database.openFile(
       Ti.Filesystem.getFile(
-        Ti.Filesystem.getApplicationDataDirectory(), 'utotals.db')),
+        Ti.Filesystem.getApplicationDataDirectory(), 'ut_dev.db')),
     create:function(){
       var tables = [
         "create table if not exists Bets(id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT,pick TEXT,date TEXT,comment TEXT, market TEXT, stakes TEXT, odds TEXT,result TEXT, payout TEXT);",

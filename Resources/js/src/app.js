@@ -93,20 +93,6 @@ define('app',[
         eq.apply_formula(f,team);
         table.append_row(team);
       },
-      predict_totals:function(obj){
-
-        table.clear();
-        table.refresh_headers();
-
-        app.calculate_scores(home_team);
-        if(away_team.get('scores').length > 0){
-          app.calculate_scores(away_team);
-        }
-      },
-      save_game:function(){
-      
-        alert("Game added to Database.");
-      },
       predict_all_teams:function(obj){
         var y = 0;
         var teams = new Teams();

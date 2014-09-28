@@ -15,7 +15,6 @@ define('game',[
       + this.get('away').get('name') + '",' + this.get('home').get('score') + ',' + this.get('away').get('score') + ','
       + this.get('total') + ')';
 
-      console.log(sql);
       DB.query(sql);
     },
     get_all_games:function(){
@@ -23,7 +22,6 @@ define('game',[
       var res = DB.query(sql);
 
       if(res){
-        console.log(res);
         return res;
       }
     }

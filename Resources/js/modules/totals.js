@@ -16,8 +16,14 @@ define('totals',[
           _this.prep_game_data();
         });
 
-        $('.show-totals').bind('click', function(_e){
+        $('.totals').bind('click', function(_e){
+          _e.preventDefault();
 
+        });
+
+        $('.sides').bind('click', function(_e){
+          _.preventDefault();
+        
         });
       },
       append_score:function(_e){
@@ -37,9 +43,9 @@ define('totals',[
         var hf = $('form.home-form');
         var af = $('form.away-form');
       
-        data.date = $('input[name="game_date"]').val();
         data.home = {};
         data.away = {};
+        data.date = $('input[name="game_date"]').val();
 
         data.home['team'] = $('select.team-select', hf).val();
         data.home['score'] = $('input[name="score"]', hf).val();
@@ -84,6 +90,49 @@ define('totals',[
 
         game.set('total', home_team.get('score') + away_team.get('score'));
         game.save_game();
+
+        this.add_game(game);
+      },
+      add_all_games:function(){
+        $('thead').empty();
+        $('tbody').empty();
+
+        var game = new Game();
+        var rows = game.get_all_games();
+        var head = {
+          'date':'Date',
+          'home':'Home Team',
+          'home_score':'Home Score',
+          'away':'Away Team',
+          'away_score':'Away Score',
+          'total':'Game Total'
+        };
+
+        var tr = '<tr>';
+        for(var i = 0; i < head.length; i++){
+          var row = head[i];
+          tr += '<th>' + row[1] + '</th>';
+        }
+
+        tr += '</tr>';
+        $('thead').append(tr);
+      
+        do {
+          var html = '<tr>';
+
+          for(var x = 0; x < head.length; x++){
+            var obj = head[x];
+            html += '<td>' + rows.fieldByName(obj[0]) + '</td>';
+          
+          }
+
+          html += '</tr>';
+          $('tbody').append(html);
+        
+        } while(rows.isValidRow());
+      },
+      add_game:function(){
+      
       },
       build_select:function(){
         var i = 0,
@@ -119,7 +168,7 @@ define('totals',[
             return this;
           },
           events:{
-            "ready":app.log('totals view loaded'),
+            "ready":_this.add_all_games()
           },
         });
 
