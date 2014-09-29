@@ -1,7 +1,5 @@
 /* APPLICATION CSS 
  * @author: Garrett Haptonstall <ghap@moshyn.com> 
- *
- *
 */
 * {
   font-style: normal;
@@ -349,12 +347,6 @@ font-size: 12px;
 .tdialog {
   color: #FFF;
   font-size: 14px;
-  min-height: 200px !important;
-}
-
-.ui-dialog {
-  min-height: 200px !important;
-  min-width: 610px !important;
 }
 
 .tdialog table {

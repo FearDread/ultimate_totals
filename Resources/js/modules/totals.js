@@ -186,6 +186,8 @@ define('totals',[
         div.dialog({
           autoOpen: false,
           resizable: false,
+          width:'620',
+          minHeight:'250',
           show:{
             effect: "blind",
             duration: 1000
