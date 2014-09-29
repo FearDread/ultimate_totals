@@ -20,7 +20,6 @@ define('bet',[
         var res = DB.query(sql);
 
         if(res){
-          console.log(res);
           return res;
         }
       },

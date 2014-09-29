@@ -33,6 +33,7 @@ require.config({
     totals:'modules/totals',
     database:'modules/database',
     reports:'modules/reports',
+    formulas:'modules/formulas'
   },
   // export globals //
   shim: {

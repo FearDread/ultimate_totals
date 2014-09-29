@@ -32,63 +32,26 @@ define('stats',[
       load_ranks:function(){
         var _this = this,
             tbl = $('.ranks-tbl'),
-            keys = ['Team','City','Conference Rank','Division Rank'];
+            hkeys = ['Team','City','Division','Conference Rank','Division Rank'],
+            okeys = ['name','market','alias','conference','division'];
+
+        _this.add_header(tbl, hkeys);
 
         _this.model = app.get_data('rankings');
         _this.model.success(function(res){
+
           var json = $.xml2json(res);
+          app.ls['ranks'] = JSON.stringify(json);
 
-          if(json != undefined){
-            app.ls['ranks'] = JSON.stringify(json);
-            $('tbody', tbl).empty();
+          _this.parse_data(json, tbl, okeys);
 
-            var season = json.season;
-            var conf = season.conference;
-            var i = 0;
-            var len = conf.length;
-
-            do {
-
-              if(conf[i].division){
-                var x = 0;
-                var div = conf[i].division.length;
-
-                do {
-                  
-                  var teams;
-                  if(conf[i].division[x].team){
-                    teams = conf[i].division;
-                  }else{
-                    teams = {};
-                  }
-
-                  if(teams.length > 0){
-                  
-                    for(var y = 0; y < teams.length; y++){
-                      var team = teams[y];
-                      var ranks = team.rank;
-
-                      team.conference = ranks[0];
-                      team.division = ranks[1];
-
-                      var keys = ['name','market','conference','division'];
-                      _this.add_row(tbl, team, keys);
-                    }
-                  }
-
-                  x++;
-                } while(--div);
-              }
-            
-              i++;
-            } while(--len);
-          }
         }).error(function(err){
             if(app.ls['ranks']){
-            
-              app.log(app.ls);
+
+              var obj = JSON.parse(app.ls['ranks']);
+              _this.parse_data(obj, tbl, okeys);
+
             }else{
-            
               alert(err.status + ' Unable to get ranks.');
             }
         });
@@ -96,61 +59,24 @@ define('stats',[
       load_stats:function(){
         var _this = this,
             tbl = $('.standings-tbl'),
-            keys = ['Team','City','Point Diff','Points For','Points Against','Wins','Losses','Win %'];
+            hkeys = ['Team','City','Point Diff','Points For','Points Against','Wins','Losses','Win %'],
+            okeys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'];
 
-        _this.add_header(tbl, keys);
+        _this.add_header(tbl, hkeys);
 
         _this.model = app.get_data('standings');
         _this.model.success(function(res){
+
           var json = $.xml2json(res);
+          app.ls['standings'] = JSON.stringify(json);
 
-          if(json != undefined){
-            $('tbody', tbl).empty();
-            app.ls['standings'] = JSON.stringify(json);
+          _this.parse_data(json, tbl, okeys);
 
-            var name = json.name;
-            var season = json.season;
-            var conf = season.conference;
-
-            var i = 0;
-            var len = conf.length;
-
-            do {
-
-              if(conf[i].division){
-                var x = 0;
-                var div = conf[i].division.length;
-
-                do {
-
-                  var teams;
-                  if(conf[i].division[x].team){
-                    teams = conf[i].division[x].team;
-                  }else{
-                    teams = {};
-                  }
-                  
-                  if(teams.length > 0){
-                  
-                    for(var y = 0; y < teams.length; y++){
-                      var team = teams[y];
-                      var keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'];
-
-                      _this.add_row(tbl, team, keys);
-                    }
-                  }
-                
-                  x++
-                } while(--div);
-              }
-            
-              i++;
-            } while(--len);
-            tbl.tablesorter();
-          }
         }).error(function(err){
             if(app.ls['standings']){
-              app.log(app.ls);
+          
+              var obj = JSON.parse(app.ls['standings']);
+              _this.parse_data(obj, tbl, okeys);
             
             }else{
               alert(err.status + ' Unable to get standings.');
@@ -176,19 +102,71 @@ define('stats',[
       add_row:function(tbl, obj, keys){
         var tbody = $('tbody',tbl);
         var tr = '<tr>';
+        var len = keys.length;
+        var i = 0;
 
-        for(var k in obj){
-
-          if(keys.indexOf(k) > -1){
-
-            if(typeof obj[k] == 'string'){
-
-              tr += '<td>' + obj[k] + '</td>';
+        do {
+          
+          if(obj.hasOwnProperty(keys[i])){
+          
+            if(typeof obj[keys[i]] == 'string'){
+              tr += '<td>' + obj[keys[i]] + '</td>';
             }
           }
-        }
+        
+          i++;
+        } while(--len);
+
         tr += '</tr>';
         tbody.append(tr);
+      },
+      parse_data:function(obj, tbl, keys){
+        var _this = this;
+
+        if(obj != undefined){
+          $('tbody', tbl).empty();
+
+          var season = obj.season;
+          var conf = season.conference;
+          var i = 0;
+          var len = conf.length;
+
+          do {
+
+            if(conf[i].division){
+              var x = 0;
+              var div = conf[i].division.length;
+
+              do {
+                
+                var teams = [];
+                if(conf[i].division[x].team){
+                  teams = conf[i].division[x].team;
+                }
+
+                if(teams.length > 0){
+                
+                  for(var y = 0; y < teams.length; y++){
+                    var team = teams[y];
+                    team.alias = conf[i].division[x].name;
+
+                    if(team.rank){
+                      team.conference = team.rank.conference;
+                      team.division = team.rank.division;
+                    }
+
+                    _this.add_row(tbl, team, keys);
+                  }
+                }
+
+                x++;
+              } while(--div);
+            }
+          
+            i++;
+          } while(--len);
+          tbl.tablesorter();
+        }
       },
       load_view:function(){
         var _this = this;
