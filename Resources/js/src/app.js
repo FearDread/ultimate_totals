@@ -1,16 +1,14 @@
 /*--------------------------------*
  * @title: Ultimate Totals 
  * @author: Garrett Haptonstall
- * @desc: Application for easy
- * calculations of sports totals
 *---------------------------------*/
 define('app',[
   'router',
   'team',
   'teams',
+  'utils',
   'game',
   'games',
-  'utils',
 ],function(Router, Team, Teams, utils){
 
     return app = {

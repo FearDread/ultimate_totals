@@ -13,7 +13,6 @@ define('stats',[
 
         $('#tabs').tabs();
         $('#tabs').bind('tabsshow', function(_e, ui){
-
           switch(ui.index){
             case 0:
               _this.load_stats();
@@ -29,20 +28,69 @@ define('stats',[
               break;
           }
         });
-
       },
       load_ranks:function(){
         var _this = this,
             tbl = $('.ranks-tbl'),
-            keys = [];
+            keys = ['Team','City','Conference Rank','Division Rank'];
 
         _this.model = app.get_data('rankings');
         _this.model.success(function(res){
           var json = $.xml2json(res);
-          console.log(json);
-        
+
+          if(json != undefined){
+            app.ls['ranks'] = JSON.stringify(json);
+            $('tbody', tbl).empty();
+
+            var season = json.season;
+            var conf = season.conference;
+            var i = 0;
+            var len = conf.length;
+
+            do {
+
+              if(conf[i].division){
+                var x = 0;
+                var div = conf[i].division.length;
+
+                do {
+                  
+                  var teams;
+                  if(conf[i].division[x].team){
+                    teams = conf[i].division;
+                  }else{
+                    teams = {};
+                  }
+
+                  if(teams.length > 0){
+                  
+                    for(var y = 0; y < teams.length; y++){
+                      var team = teams[y];
+                      var ranks = team.rank;
+
+                      team.conference = ranks[0];
+                      team.division = ranks[1];
+
+                      var keys = ['name','market','conference','division'];
+                      _this.add_row(tbl, team, keys);
+                    }
+                  }
+
+                  x++;
+                } while(--div);
+              }
+            
+              i++;
+            } while(--len);
+          }
         }).error(function(err){
-            alert(err.status + ': Unable to get ranks.');
+            if(app.ls['ranks']){
+            
+              app.log(app.ls);
+            }else{
+            
+              alert(err.status + ' Unable to get ranks.');
+            }
         });
       },
       load_stats:function(){
@@ -57,9 +105,12 @@ define('stats',[
           var json = $.xml2json(res);
 
           if(json != undefined){
-            var name = json.name,
-                season = json.season,
-                conf = season.conference;
+            $('tbody', tbl).empty();
+            app.ls['standings'] = JSON.stringify(json);
+
+            var name = json.name;
+            var season = json.season;
+            var conf = season.conference;
 
             var i = 0;
             var len = conf.length;
@@ -71,14 +122,22 @@ define('stats',[
                 var div = conf[i].division.length;
 
                 do {
-                  var teams = conf[i].division[x].team;
 
-                  for(var y = 0; y < teams.length; y++){
-                    var team = teams[y];
-                    var tbl = $('.standings-tbl'),
-                    var keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'];
+                  var teams;
+                  if(conf[i].division[x].team){
+                    teams = conf[i].division[x].team;
+                  }else{
+                    teams = {};
+                  }
+                  
+                  if(teams.length > 0){
+                  
+                    for(var y = 0; y < teams.length; y++){
+                      var team = teams[y];
+                      var keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'];
 
-                    _this.add_row(tbl, team, keys);
+                      _this.add_row(tbl, team, keys);
+                    }
                   }
                 
                   x++
@@ -90,7 +149,12 @@ define('stats',[
             tbl.tablesorter();
           }
         }).error(function(err){
-            alert(err.status + 'Unable to get standings.');
+            if(app.ls['standings']){
+              app.log(app.ls);
+            
+            }else{
+              alert(err.status + ' Unable to get standings.');
+            }
         });
       },
       add_header:function(tbl, keys){
@@ -112,11 +176,13 @@ define('stats',[
       add_row:function(tbl, obj, keys){
         var tbody = $('tbody',tbl);
         var tr = '<tr>';
+
         for(var k in obj){
 
           if(keys.indexOf(k) > -1){
 
             if(typeof obj[k] == 'string'){
+
               tr += '<td>' + obj[k] + '</td>';
             }
           }

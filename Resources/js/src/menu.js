@@ -14,6 +14,13 @@ define('menu',[
             }
           }
         },
+        'Tools':{
+          'Clear Storage':function(){
+            if(confirm('You are about to clear all local storage, are you sure?')){
+              app.ls.clear(); 
+            }
+          }
+        },
         'Formulas':{
           'Sanchez':function(){
           
