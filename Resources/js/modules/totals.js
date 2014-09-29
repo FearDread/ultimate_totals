@@ -11,6 +11,7 @@ define('totals',[
       model:null,
       bind_events:function(){
         var _this = this;
+        app.loader.stop();
 
         $('.save-game').bind('click', function(_e){
           _e.preventDefault();

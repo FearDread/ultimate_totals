@@ -74,8 +74,10 @@ define('betting',[
           i++;
         } while(--len);
 
-        this.model.save_bet();
-        this.add_all_bets();
+        var res = this.model.save_bet();
+        if(res){
+          this.add_all_bets();
+        }
       },
       load_view:function(){
         var _this = this;

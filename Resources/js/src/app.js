@@ -23,6 +23,14 @@ define('app',[
       fs:Ti.Filesystem,
       path:Ti.API.application.dataPath,
       window:Ti.UI.currentWindow,
+      loader:{
+        start:function(){
+          $('div.fade').show('fast');
+        },
+        stop:function(){
+          $('div.fade').hide('fast');
+        }
+      },
       log:function(message){
         if(this.debug){
           console.log('DEBUG: ', message);
@@ -112,12 +120,11 @@ define('app',[
 
           y++;
         } while(--tms);
-
-        // table deprecated
-        //table.build_table(teams);
       },
       init:function(){
         var _this = this;
+
+        var sd = new sdata();
         var file = _this.fs.getFile(_this.path, 'user.properties');
 
         if(_this.debug){
@@ -134,17 +141,29 @@ define('app',[
 
         Router.init();
 
-        // add loading icon upon app init for these data calls //
-        var sd = new sdata();
         _this.standings = sd.get_standings(); 
-        // _this.season = sd.get_season();
-        // _this.rankings = sd.get_rankings();
-
+        _this.season = sd.get_season();
+        _this.rankings = sd.get_rankings();
+        
         (document, 'ready', function(app){
 
           _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
-        
+
+          /*
+          $.when(
+            _this.standings, 
+            _this.season, 
+            _this.rankings
+          ).done(function(st, se, rn){
+          
+            app.log(st);
+          }).fail(function(){
+          
+            app.log('error with promises.');
+          });
+          */
+ 
         })(this);
       }
     }

@@ -32,7 +32,7 @@ define('bet',[
 
         var res = DB.query(sql);
         if(res){
-          alert('Bet added to Database.'); 
+          return res;
         }
       }
     });

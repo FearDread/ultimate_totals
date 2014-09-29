@@ -31,6 +31,20 @@ define('stats',[
         });
 
       },
+      load_ranks:function(){
+        var _this = this,
+            tbl = $('.ranks-tbl'),
+            keys = [];
+
+        _this.model = app.get_data('rankings');
+        _this.model.success(function(res){
+          var json = $.xml2json(res);
+          console.log(json);
+        
+        }).error(function(err){
+            alert(err.status + ': Unable to get ranks.');
+        });
+      },
       load_stats:function(){
         var _this = this,
             tbl = $('.standings-tbl'),
@@ -61,7 +75,10 @@ define('stats',[
 
                   for(var y = 0; y < teams.length; y++){
                     var team = teams[y];
-                    _this.add_row(team);
+                    var tbl = $('.standings-tbl'),
+                    var keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'];
+
+                    _this.add_row(tbl, team, keys);
                   }
                 
                   x++
@@ -72,6 +89,8 @@ define('stats',[
             } while(--len);
             tbl.tablesorter();
           }
+        }).error(function(err){
+            alert(err.status + 'Unable to get standings.');
         });
       },
       add_header:function(tbl, keys){
@@ -90,18 +109,15 @@ define('stats',[
         tr += '</tr>';
         $('thead', tbl).append(tr);
       },
-      add_row:function(team){
-        var tbl = $('.standings-tbl'),
-            keys = ['name','market','point_diff','points_for','points_against','wins','losses','win_pct'],
-            tbody = $('tbody',tbl);
-
+      add_row:function(tbl, obj, keys){
+        var tbody = $('tbody',tbl);
         var tr = '<tr>';
-        for(var obj in team){
+        for(var k in obj){
 
-          if(keys.indexOf(obj) > -1){
+          if(keys.indexOf(k) > -1){
 
-            if(typeof team[obj] == 'string'){
-              tr += '<td>' + team[obj] + '</td>';
+            if(typeof obj[k] == 'string'){
+              tr += '<td>' + obj[k] + '</td>';
             }
           }
         }
