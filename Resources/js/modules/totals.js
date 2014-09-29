@@ -3,7 +3,8 @@ define('totals',[
   'team',
   'game',
   'games',
-  'libs/jquery/jquery-ui.min'
+  'libs/jquery/jquery-ui.min',
+  'libs/jquery/plugins/jquery.tablesorter.min'
 ],function(app, Team, Game, Games){
 
     return totals = {
@@ -20,12 +21,12 @@ define('totals',[
 
         $('.calc-totals').bind('click', function(_e){
           _e.preventDefault();
-
+          _this.display_totals();
         });
 
         $('.calc-sides').bind('click', function(_e){
           _.preventDefault();
-
+          _this.display_sides();
         });
 
         $('.datepicker').datepicker();
@@ -90,8 +91,9 @@ define('totals',[
         this.add_all_games();
       },
       add_all_games:function(){
-        $('thead').empty();
-        $('tbody').empty();
+        var tbl = $('.totals-table');
+        $('thead', tbl).empty();
+        $('tbody', tbl).empty();
 
         var game = new Game();
         var rows = game.get_all_games();
@@ -111,7 +113,7 @@ define('totals',[
           }
         }
         tr += '</tr>';
-        $('thead').append(tr);
+        $('thead', tbl).append(tr);
       
         if(rows.rowCount() > 0){
 
@@ -124,11 +126,84 @@ define('totals',[
               }
             }
             html += '</tr>';
-            $('tbody').append(html);
+            $('tbody', tbl).append(html);
           
             rows.next();
           } while(rows.isValidRow());
         }
+      },
+      display_totals:function(){
+        var div = $('.tdialog'); 
+        var thead = $('thead', div);
+        var tbody = $('tbody', div);
+        var head = {
+          'home':'Home Team',
+          'away':'Visitor Team',
+          'line':'Line',
+          'total':'Predicted Total',
+          'recomended':'Recommended',
+          'actual':'Actual Total',
+          'result': 'Result',
+          'details':'Details'
+        };
+    
+        thead.empty();
+        var tr = '<tr>';
+
+        for(var k in head){
+          if(head.hasOwnProperty(k)){
+            tr += '<th>' + head[k] + '</th';
+          }
+        }
+        tr += '</tr>';
+        thead.append(tr);
+
+        var game = new Game();
+        var rows = game.get_all_games();
+
+        if(rows.rowCount() > 0){
+          tbody.empty();
+        
+          do {
+            var html = '<tr>';
+
+            for(var k in head){
+              if(head.hasOwnProperty(k) && rows.fieldByName(k)){
+                html += '<td>' + rows.fieldByName(k) + '</td>';
+              }else if(k == 'details'){
+                html += '<td><a href="#details">Details</a></td>'; 
+              }else{
+                html += '<td></td>';
+              }
+            }
+            html += '</tr>'
+            tbody.append(html);
+          
+            rows.next();
+          } while(rows.isValidRow());
+        }
+
+        div.dialog({
+          autoOpen: false,
+          resizable: false,
+          show:{
+            effect: "blind",
+            duration: 1000
+          },
+          hide:{
+            effect: "explode",
+            duration: 1000
+          },
+          close:function(_e, ui){
+            div.dialog('close');
+            $('.ui-dialog').remove();
+          }
+        });
+
+        div.dialog('open');
+      },
+      display_sides:function(){
+      
       },
       build_select:function(){
         var i = 0,

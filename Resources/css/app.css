@@ -346,6 +346,22 @@ font-size: 12px;
   top: -7px;
 }
 
+.tdialog {
+  color: #FFF;
+  font-size: 14px;
+  min-height: 200px !important;
+}
+
+.ui-dialog {
+  min-height: 200px !important;
+  min-width: 610px !important;
+}
+
+.tdialog table {
+  color: #FFF;
+  font-size: 14px;
+}
+
 .new-bet{
   position: relative;
   width: 1000px;

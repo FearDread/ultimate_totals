@@ -19,8 +19,9 @@ define('betting',[
         $('.datepicker').datepicker();
       },
       add_all_bets:function(){
-        $('thead').empty();
-        $('tbody').empty();
+        var tbl = $('.bets-table');
+        $('thead', tbl).empty();
+        $('tbody', tbl).empty();
 
         var rows = this.model.get_all_bets();
         var head = {
@@ -42,7 +43,7 @@ define('betting',[
           }
         }
         tr += '</tr>'; 
-        $('thead').append(tr);
+        $('thead', tbl).append(tr);
 
         if(rows.rowCount() > 0){
 
@@ -55,7 +56,7 @@ define('betting',[
               }
             }
             html += '</tr>';
-            $('tbody').append(html);
+            $('tbody', tbl).append(html);
 
             rows.next();
           } while(rows.isValidRow());
