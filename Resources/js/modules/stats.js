@@ -24,7 +24,7 @@ define('stats',[
               _this.load_season();
               break;
             case 3:
-              _this.load_schedual();
+              _this.load_schedule();
               break;
           }
         });
@@ -83,6 +83,41 @@ define('stats',[
             }
         });
       },
+      load_schedule:function(){
+        var _this = this,
+            tbl = $('.schedule-tbl'),
+            hkeys = ['Date','Home Team','Away Team','Venue','Status','Coverage'],
+            okeys = ['scheduled','home','away','venue','status','coverage'];
+      
+        _this.add_header(tbl, hkeys);
+        /* only need 2014 schedule once for now */
+        if(app.ls['schedule']){
+
+          var obj = JSON.parse(app.ls['schedule']);
+          _this.parse_schedule(obj, tbl, okeys);
+
+          return;
+        }
+
+        _this.model = app.get_data('schedule');
+        _this.model.success(function(res){
+          
+          var json = $.xml2json(res);
+          app.ls['schedule'] = JSON.stringify(json);
+
+          _this.parse_schedule(json, tbl, okeys);
+        
+        }).error(function(err){
+            if(app.ls['schedule']){
+
+              var obj = JSON.parse(app.ls['schedule']);
+              _this.parse_schedule(obj, tbl, okeys);
+            
+            }else{
+              alert(err.status + ' Unable to get schedule');
+            }
+        });
+      },
       add_header:function(tbl, keys){
         var i = 0,
             tr = '<tr>',
@@ -119,6 +154,10 @@ define('stats',[
 
         tr += '</tr>';
         tbody.append(tr);
+      },
+      parse_schedule:function(obj, tbl, keys){
+        app.log(obj);
+      
       },
       parse_data:function(obj, tbl, keys){
         var _this = this;

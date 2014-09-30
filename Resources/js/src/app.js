@@ -14,6 +14,7 @@ define('app',[
     return app = {
       debug:true,
       season:null,
+      schedule:null,
       rankings:null,
       standings:null,
       properties:null,
@@ -142,25 +143,12 @@ define('app',[
         _this.standings = sd.get_standings(); 
         _this.season = sd.get_season();
         _this.rankings = sd.get_rankings();
+        _this.schedule = sd.get_schedule();
         
         (document, 'ready', function(app){
 
           _this.window.setTitle("ULTIMATE TOTALS");
           _this.load_module('totals');
-
-          /*
-          $.when(
-            _this.standings, 
-            _this.season, 
-            _this.rankings
-          ).done(function(st, se, rn){
-          
-            app.log(st);
-          }).fail(function(){
-          
-            app.log('error with promises.');
-          });
-          */
  
         })(this);
       }
