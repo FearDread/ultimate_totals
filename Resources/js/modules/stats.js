@@ -2,12 +2,19 @@ define('stats',[
   'app',
   'libs/jquery/jquery-ui.min',
   'libs/jquery/plugins/jquery.tablesorter.min',
-  'libs/jquery/plugins/jquery.xmltojson'
+  'libs/jquery/plugins/jquery.xmltojson',
+  'libs/jquery/plugins/jquery.simplePagination'
 ],function(app){
 
     return stats = {
       name:'stats',
       model:null,
+      pager:{
+        page:1,
+        max:0,
+        offset:0,
+        count:20
+      },
       bind_events:function(){
         var _this = this;
 
@@ -156,8 +163,45 @@ define('stats',[
         tbody.append(tr);
       },
       parse_schedule:function(obj, tbl, keys){
-        app.log(obj);
-      
+        var _this = this;
+        var okeys = ['scheduled','home','away','venue','status','coverage'];
+
+        if(obj != undefined){
+          $('tbody', tbl).empty();
+
+          var i = _this.pager.offset;
+          var games = obj.season_schedule.games.game;
+
+          _this.pager.max = games.length;
+          $('.pagination').pagination({
+              items:_this.pager.max,
+              itemsOnPage:_this.pager.count,
+              cssStyle:'dark-theme',
+              onPageClick:pager_callback
+          });
+
+          var count = _this.pager.count;
+
+          do {
+            var game = games[i];
+
+            game.home = game.home.name;
+            game.away = game.away.name;
+            game.scheduled = game.scheduled.split('T')[0];
+            game.venue = game.venue.name;
+
+            _this.add_row(tbl, game, okeys);
+
+            i++;
+          } while(--count);
+        }
+
+        function pager_callback(pn){
+          pager.page = pn;
+          pager.offset = pager.offset + 20;
+        }
+
+        tbl.tablesorter();      
       },
       parse_data:function(obj, tbl, keys){
         var _this = this;

@@ -28,6 +28,17 @@ body {
   margin-top: 15%;
 }
 
+.pagination {
+  width: 45%;
+  margin: auto;
+  text-align: center;
+}
+
+.pagination ul {
+  display: block;
+  text-align: center;
+}
+
 #news {
 width: 95%;
 height: 800px;
@@ -463,6 +474,13 @@ font-size: 12px;
   right: 50px;
   font-size: 12px;
 
+}
+.details-header {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .footer p {

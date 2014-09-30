@@ -169,9 +169,9 @@ define('totals',[
 
             for(var k in head){
               if(head.hasOwnProperty(k) && rows.fieldByName(k)){
-                html += '<td>' + rows.fieldByName(k) + '</td>';
+                html += '<td class="' + k + '">' + rows.fieldByName(k) + '</td>';
               }else if(k == 'details'){
-                html += '<td><a href="#details">Details</a></td>'; 
+                html += '<td><a class="details" href="#">Details</a></td>'; 
               }else{
                 html += '<td></td>';
               }
@@ -203,6 +203,31 @@ define('totals',[
         });
 
         div.dialog('open');
+        $('.details', div).bind('click', function(_e){
+          _e.preventDefault();
+                  
+          var tr = $(this).closest('tr');
+          var tp = '<div class="details-header">'
+          + 'At ' + $('.away', tr).text() + ' by x over'
+          + ' ' + $('.home', tr).text() + ' ' + $('.total', tr).text() 
+          + ' Total Points'; 
+
+          $('table', div).before(tp);
+          $('table', div).empty();
+
+          var thead = '<thead><th>Visiting Team</th><th>'
+          + 'Points</th><th>Home Team</th><th>Points</th></thead>';
+          $('table', div).append(thead);
+
+          var tbody = $('<tbody></tbody>');
+          var str = '<tr><td>Away Power Rating</td>'
+          + '<td></td></tr>';
+          
+          tbody.append(str);
+          $('table', div).append(tbody);
+        });
+
+        rows.close();
       },
       display_sides:function(){
       
