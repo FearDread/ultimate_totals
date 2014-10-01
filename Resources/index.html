@@ -102,6 +102,13 @@
           <tbody></tbody>
         </table>
       </div>
+      <div class='dialog sdialog' title='Predict Sides'>
+        <table class='dialog-table'>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </script>
     </script>
     <script id='template-stats' type='text/template'>
       <br /><br />
@@ -121,6 +128,9 @@
               <li>
                 <a href="#schedual">Schedual</a>
               </li>
+              <li>
+                <a href="#injuries">Injuries</a>
+              <li>
             </ul>
           <div id='standings' class='sub-stats'>
             <h2>Team Standings</h2>
@@ -132,6 +142,7 @@
           </div>
           <div id='rankings' class='sub-stats'>
             <h2>Team Rankings</h2>
+            <button class='blue-btn print'>Print</button>
             <table class='stats-table ranks-tbl'>
               <thead></thead>
               <tbody></tbody>
@@ -139,6 +150,7 @@
           </div>
           <div id='season' class='sub-stats'>
             <h2>Season Stats</h2>
+            <button class='blue-btn print'>Print</button>
             <table class='stats-table season-tbl'>
               <thead></thead>
               <tbody></tbody>
@@ -146,8 +158,17 @@
           </div>
           <div id='schedual' class='sub-stats'>
             <h2>Season Schedual</h2>
+            <button class='blue-btn print'>Print</button>
             <div class='dark-pagination pagination'></div>
             <table class='stats-table schedule-tbl'>
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div id='injuries' class='sub-stats'>
+            <h2>Injury Reports</h2>
+            <button class='blue-btn print'>Print</button>
+            <table class='stats-table injuries-tbl'>
               <thead></thead>
               <tbody></tbody>
             </table>

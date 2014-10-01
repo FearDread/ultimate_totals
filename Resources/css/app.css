@@ -38,6 +38,12 @@ body {
   display: block;
   text-align: center;
 }
+.pagination ul a {
+  text-decoration: none;
+}
+.pagination ul a:hover {
+  text-decoration: none;
+}
 
 #news {
 width: 95%;

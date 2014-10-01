@@ -15,6 +15,7 @@ define('app',[
       debug:true,
       season:null,
       schedule:null,
+      injuries:null,
       rankings:null,
       standings:null,
       properties:null,
@@ -24,10 +25,10 @@ define('app',[
       window:Ti.UI.currentWindow,
       loader:{
         start:function(){
-          $('div.fade').show('fast');
+          $('div.fade').show();
         },
         stop:function(){
-          $('div.fade').hide('fast');
+          $('div.fade').hide();
         }
       },
       log:function(message){
@@ -36,6 +37,15 @@ define('app',[
         }
       },
       get_data:function(prop){
+        this.loader.start();
+        var sd = new sdata();
+        var func = 'get_' + prop;
+
+        if(this[prop] == null){
+          this[prop] = sd[func]();
+        }
+        this.loader.stop();
+
         return this[prop];
       },
       load_module:function(module){
@@ -122,8 +132,6 @@ define('app',[
       },
       init:function(){
         var _this = this;
-
-        var sd = new sdata();
         var file = _this.fs.getFile(_this.path, 'user.properties');
 
         if(_this.debug){
@@ -134,16 +142,15 @@ define('app',[
           _this.properties = Ti.App.loadProperties(file);
         }else{
           _this.properties = Ti.App.createProperties({
-              formula:'sanchez'
+            formula:'sanchez'
+            keys:{
+              nba:'395ykxy34yqan3txm5zaqv6u',
+              nfl:'gws9ztcsw6qdbtbvu8kpnxdn'
+            }
           });
         }
 
         Router.init();
-
-        _this.standings = sd.get_standings(); 
-        _this.season = sd.get_season();
-        _this.rankings = sd.get_rankings();
-        _this.schedule = sd.get_schedule();
         
         (document, 'ready', function(app){
 

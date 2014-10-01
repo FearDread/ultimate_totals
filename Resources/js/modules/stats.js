@@ -33,6 +33,9 @@ define('stats',[
             case 3:
               _this.load_schedule();
               break;
+            case 4:
+              _this.load_injuries();
+              break;
           }
         });
       },
@@ -46,6 +49,7 @@ define('stats',[
 
         _this.model = app.get_data('rankings');
         _this.model.success(function(res){
+          app.loader.stop();
 
           var json = $.xml2json(res);
           app.ls['ranks'] = JSON.stringify(json);
@@ -60,6 +64,33 @@ define('stats',[
 
             }else{
               alert(err.status + ' Unable to get ranks.');
+            }
+        });
+      },
+      load_injuries:function(){
+        var _this = this,
+            tbl = $('.injuries-tbl'),
+            hkeys = ['Team','City','Player','Position','Injury','Comment','Status','Update Date'],
+            okeys = ['name','market','player','position','desc','comment','status','update_date'];
+
+        _this.add_header(tbl, hkeys);
+
+        _this.model = app.get_data('injuries');
+        _this.model.success(function(res){
+        
+          var json = $.xml2json(res);
+          app.ls['injuries'] = JSON.stringify(json);
+
+          _this.parse_injuries(json, tbl, okeys);
+
+        }).error(function(err){
+            if(app.ls['injuries']){
+
+              var obj = JSON.parse(app.ls['injuries']);
+              _this.parse_injuries(obj, tbl, okeys);
+            
+            }else{
+              alert(err.status + ' Unable to get injuries.');
             }
         });
       },
@@ -162,9 +193,53 @@ define('stats',[
         tr += '</tr>';
         tbody.append(tr);
       },
+      parse_injuries:function(obj, tbl, keys){
+        var _this = this;
+
+        if(obj != undefined){
+          $('tbody', tbl).empty();
+
+          var i = 0;
+          var inj = obj.injuries;
+          var len = inj.team.length;
+
+          do {
+            var team = inj.team[i];
+            var players = team.player;
+
+            var x = 0;
+            var pls = players.length;
+
+            do {
+              var p = players[x];
+
+              if(p != undefined){
+                var obj = {};
+
+                obj.name = team.name;
+                obj.market = team.market;
+
+                obj.player = p.full_name;
+                obj.position = p.position;
+
+                obj.desc = p.injury.desc;
+                obj.comment = p.injury.comment;
+                obj.status = p.injury.status;
+                obj.update_date = p.injury.update_date;
+              
+                _this.add_row(tbl, obj, keys);
+              }
+
+              x++;
+            } while(--pls);
+          
+            i++;
+          } while(--len);
+          tbl.tablesorter();
+        }
+      },
       parse_schedule:function(obj, tbl, keys){
         var _this = this;
-        var okeys = ['scheduled','home','away','venue','status','coverage'];
 
         if(obj != undefined){
           $('tbody', tbl).empty();
@@ -190,7 +265,7 @@ define('stats',[
             game.scheduled = game.scheduled.split('T')[0];
             game.venue = game.venue.name;
 
-            _this.add_row(tbl, game, okeys);
+            _this.add_row(tbl, game, keys);
 
             i++;
           } while(--count);

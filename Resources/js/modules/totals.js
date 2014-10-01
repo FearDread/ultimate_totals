@@ -193,7 +193,7 @@ define('totals',[
             duration: 1000
           },
           hide:{
-            effect: "explode",
+            effect: "blind",
             duration: 1000
           },
           close:function(_e, ui){
@@ -230,7 +230,26 @@ define('totals',[
         rows.close();
       },
       display_sides:function(){
+        var div = $('.sdialog');
       
+        div.dialog({
+          autoOpen: false,
+          resizable: false,
+          width:'620',
+          minHeight:'250',
+          show:{
+            effect: "blind",
+            duration: 1000
+          },
+          hide:{
+            effect: "blind",
+            duration: 1000
+          },
+          close:function(_e, ui){
+            div.dialog('close');
+            $('.ui-dialog').remove();
+          }
+        });
       },
       build_select:function(){
         var i = 0,
