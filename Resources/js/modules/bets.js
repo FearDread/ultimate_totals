@@ -48,11 +48,11 @@ define('betting',[
         if(rows.rowCount() > 0){
 
           do {
-            var html = '<tr>';
+            var html = '<tr data-idx="' + rows.fieldByName('id') + '">';
 
             for(var k in head){
               if(head.hasOwnProperty(k)){
-                html += '<td>' + rows.fieldByName(k) + '</td>'; 
+                html += '<td class="' + k + '">' + rows.fieldByName(k) + '</td>'; 
               }
             }
             html += '</tr>';
@@ -61,6 +61,18 @@ define('betting',[
             rows.next();
           } while(rows.isValidRow());
         }
+
+        tbl.bind('click', function(_e){
+          _e.stopPropagation();
+          var target = $(_e.target);
+
+          if(target.hasClass('result')){
+            var tr = target.closest('tr');
+            var id = tr.attr('data-idx');
+
+            app.log(id);
+          }
+        });
       },
       save_new_bet:function(){
         var i = 0,

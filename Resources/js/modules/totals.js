@@ -25,7 +25,7 @@ define('totals',[
         });
 
         $('.calc-sides').bind('click', function(_e){
-          _.preventDefault();
+          _e.preventDefault();
           _this.display_sides();
         });
 

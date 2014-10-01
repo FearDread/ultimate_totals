@@ -13,6 +13,13 @@ body {
   background: url('/img/main-bg.png') repeat;
 }
 
+.helper {
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: #FFF;
+}
+
 .overlay {
   position: absolute;
   top:0;
@@ -28,29 +35,30 @@ body {
   margin-top: 15%;
 }
 
-.pagination {
-  width: 45%;
+.dark-pagination {
+  width: 52%;
   margin: auto;
   text-align: center;
 }
 
-.pagination ul {
-  display: block;
-  text-align: center;
+.dark-pagination .pagination {
+  width: 110%;
+  padding: 0;
+  margin: auto 10px;
 }
-.pagination ul a {
+.dark-pagination ul a {
   text-decoration: none;
 }
-.pagination ul a:hover {
+.dark-pagination ul a:hover {
   text-decoration: none;
 }
 
 #news {
-width: 95%;
-height: 800px;
-margin: auto;
-margin-left: 25px;
-margin-bottom: 25px;
+  width: 95%;
+  height: 800px;
+  margin: auto;
+  margin-left: 25px;
+  margin-bottom: 25px;
 }
 
 .blue-btn {

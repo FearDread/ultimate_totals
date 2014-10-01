@@ -44,7 +44,6 @@ define('app',[
         if(this[prop] == null){
           this[prop] = sd[func]();
         }
-        this.loader.stop();
 
         return this[prop];
       },
@@ -142,11 +141,9 @@ define('app',[
           _this.properties = Ti.App.loadProperties(file);
         }else{
           _this.properties = Ti.App.createProperties({
-            formula:'sanchez'
-            keys:{
-              nba:'395ykxy34yqan3txm5zaqv6u',
-              nfl:'gws9ztcsw6qdbtbvu8kpnxdn'
-            }
+            formula:'sanchez',
+            nba_key:'395ykxy34yqan3txm5zaqv6u',
+            nfl_key:'gws9ztcsw6qdbtbvu8kpnxdn'
           });
         }
 

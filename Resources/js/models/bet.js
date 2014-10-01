@@ -33,6 +33,9 @@ define('bet',[
         if(res){
           return res;
         }
+      },
+      update_bet:function(id){
+      
       }
     });
 

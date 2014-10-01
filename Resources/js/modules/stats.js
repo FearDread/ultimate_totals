@@ -77,6 +77,7 @@ define('stats',[
 
         _this.model = app.get_data('injuries');
         _this.model.success(function(res){
+          app.loader.stop();
         
           var json = $.xml2json(res);
           app.ls['injuries'] = JSON.stringify(json);
@@ -104,6 +105,7 @@ define('stats',[
 
         _this.model = app.get_data('standings');
         _this.model.success(function(res){
+          app.loader.stop();
 
           var json = $.xml2json(res);
           app.ls['standings'] = JSON.stringify(json);
@@ -130,6 +132,7 @@ define('stats',[
         _this.add_header(tbl, hkeys);
         /* only need 2014 schedule once for now */
         if(app.ls['schedule']){
+          app.loader.stop();
 
           var obj = JSON.parse(app.ls['schedule']);
           _this.parse_schedule(obj, tbl, okeys);
@@ -139,6 +142,7 @@ define('stats',[
 
         _this.model = app.get_data('schedule');
         _this.model.success(function(res){
+          app.loader.stop();
           
           var json = $.xml2json(res);
           app.ls['schedule'] = JSON.stringify(json);
@@ -242,38 +246,52 @@ define('stats',[
         var _this = this;
 
         if(obj != undefined){
-          $('tbody', tbl).empty();
-
           var i = _this.pager.offset;
           var games = obj.season_schedule.games.game;
 
+          $('tbody', tbl).empty();
           _this.pager.max = games.length;
+
           $('.pagination').pagination({
               items:_this.pager.max,
-              itemsOnPage:_this.pager.count,
               cssStyle:'dark-theme',
-              onPageClick:pager_callback
+              onPageClick:pager_callback,
+              itemsOnPage:_this.pager.count,
           });
 
           var count = _this.pager.count;
+          add_games(count);
+        }
+
+        function pager_callback(pn, _e){
+          _e.preventDefault();
+          $('tbody', tbl).empty();
+
+          _this.pager.page = pn;
+          _this.pager.offset = (pn - 1) * _this.pager.count;
+
+          var count = _this.pager.count;
+          add_games(count);
+        }
+
+        function add_games(count){
+          var i = _this.pager.offset;
 
           do {
             var game = games[i];
+            var g = {};
 
-            game.home = game.home.name;
-            game.away = game.away.name;
-            game.scheduled = game.scheduled.split('T')[0];
-            game.venue = game.venue.name;
+            g.home = game.home.name;
+            g.away = game.away.name;
+            g.scheduled = game.scheduled.split('T')[0];
+            g.venue = game.venue.name;
+            g.status = game.status;
+            g.coverage = game.coverage;
 
-            _this.add_row(tbl, game, keys);
+            _this.add_row(tbl, g, keys);
 
             i++;
           } while(--count);
-        }
-
-        function pager_callback(pn){
-          pager.page = pn;
-          pager.offset = pager.offset + 20;
         }
 
         tbl.tablesorter();      
