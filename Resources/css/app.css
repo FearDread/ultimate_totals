@@ -496,7 +496,13 @@ font-size: 12px;
   font-weight: bold;
   margin-bottom: 20px;
 }
-
+.select-backdrop {
+  width:70px;
+  height:50px;
+  background: #000;
+  color: #fff;
+  position:absolute;
+}
 .footer p {
   font-size: 10px;
   font-weight: 300;

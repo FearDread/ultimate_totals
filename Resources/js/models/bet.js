@@ -35,7 +35,9 @@ define('bet',[
         }
       },
       update_bet:function(id){
-      
+        var sql = "update Bets set result = '" + this.get('result') + "' where"
+        + " id = " + parseInt(id); 
+        DB.query(sql);
       }
     });
 

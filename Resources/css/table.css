@@ -54,6 +54,7 @@
   }
   .totals-table td{
     vertical-align:middle;
+    position:relative;
       background:-o-linear-gradient(bottom, #ffffff 5%, #91daf2 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #91daf2) ); 
       background:-moz-linear-gradient( center top, #ffffff 5%, #91daf2 100% );
       filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#91daf2");  background: -o-linear-gradient(top,#ffffff,91daf2);

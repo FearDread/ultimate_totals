@@ -19,7 +19,9 @@ define('betting',[
         $('.datepicker').datepicker();
       },
       add_all_bets:function(){
+        var _this = this;
         var tbl = $('.bets-table');
+
         $('thead', tbl).empty();
         $('tbody', tbl).empty();
 
@@ -32,8 +34,8 @@ define('betting',[
          'market':'Market',
          'stakes':'Stakes',
          'odds':'Odds',
-         'result':'Result',
-         'payout':'Payout'
+         'payout':'Payout',
+         'result':'Result'
         };
         var tr = '<tr>';
 
@@ -69,8 +71,25 @@ define('betting',[
           if(target.hasClass('result')){
             var tr = target.closest('tr');
             var id = tr.attr('data-idx');
+            var bet = new Bet();
 
-            app.log(id);
+            var select = '<div class="select-backdrop">'
+            + '<ul><li>Won</li><li>Lost</li><li>Void</li></ul>'
+            + '</div>';
+
+            target.append(select);
+            $('.select-backdrop li', target).bind('click', function(_e){
+              _e.preventDefault();
+
+              var keys = ['won','lost','void'];
+              var idx = $(this).index();
+              var sel = keys[idx];
+            
+              bet.set('result', sel);
+              bet.update_bet(id);
+
+              _this.add_all_bets();
+            });
           }
         });
       },
