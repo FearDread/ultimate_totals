@@ -57,6 +57,7 @@ define('stats',[
           _this.parse_data(json, tbl, okeys);
 
         }).error(function(err){
+          app.loader.stop();
             if(app.ls['ranks']){
 
               var obj = JSON.parse(app.ls['ranks']);
@@ -85,6 +86,7 @@ define('stats',[
           _this.parse_injuries(json, tbl, okeys);
 
         }).error(function(err){
+          app.loader.stop();
             if(app.ls['injuries']){
 
               var obj = JSON.parse(app.ls['injuries']);
@@ -113,6 +115,7 @@ define('stats',[
           _this.parse_data(json, tbl, okeys);
 
         }).error(function(err){
+          app.loader.stop();
             if(app.ls['standings']){
           
               var obj = JSON.parse(app.ls['standings']);
@@ -150,6 +153,7 @@ define('stats',[
           _this.parse_schedule(json, tbl, okeys);
         
         }).error(function(err){
+          app.loader.stop();
             if(app.ls['schedule']){
 
               var obj = JSON.parse(app.ls['schedule']);
