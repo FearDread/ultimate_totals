@@ -15,7 +15,7 @@ systems.
 
 [Ultimate Totals Wiki](https://github.com/FearDread/UltimateTotals/wiki)
 
-[Ultimate Totals Git Page](https://github.com/FearDread/UltimateTotals/gitpage)
+[Ultimate Totals Git Page](http://feardread.github.io/UltimateTotals)
 
 # Technolegy Used
   - Jquery
