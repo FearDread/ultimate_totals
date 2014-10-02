@@ -13,7 +13,9 @@ This is a single page javascript application using the TideSDK framwork to compi
 it into a native desktop application.  Can be ran in Linux, Windows, and Mac OSX operating
 systems.
 
-[Ultimate Totals Wiki](https://github.com/UltimateTotals/wiki)
+[Ultimate Totals Wiki](https://github.com/FearDread/UltimateTotals/wiki)
+
+[Ultimate Totals Git Page](https://github.com/FearDread/UltimateTotals/gitpage)
 
 # Technolegy Used
   - Jquery
