@@ -3,21 +3,23 @@ ULTIMATE TOTALS
 
 Beat the bookies with Ultimate Totals!  Ever wonder how the sports bookies get there 
 statistics and numbers for game predictions?  Well they use very complex software.  
+
 Now there is a solution for the common man, Ultimate Totals, where the entire prediction
 process is simplified with an intuitive interface and large help database.  
 
 ## Documentation ##
 
 This is a single page javascript application using the TideSDK framwork to compile
-it into a native desktop application.
+it into a native desktop application.  Can be ran in Linux, Windows, and Mac OSX operating
+systems.
+
+[Ultimate Totals Wiki](https://github.com/UltimateTotals/wiki)
 
 # Technolegy Used
   - Jquery
   - Requirejs
   - Backbone
   - Underscore
-
-[Ultimate Totals Wiki](https://github.com/UltimateTotals/wiki)
 
 ## Getting started ##
 
