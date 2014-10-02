@@ -14,6 +14,7 @@ define('app',[
     return app = {
       debug:true,
       season:null,
+      summary:null,
       schedule:null,
       injuries:null,
       rankings:null,

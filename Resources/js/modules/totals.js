@@ -293,6 +293,11 @@ define('totals',[
 
         new view();
       },
+      refresh:function(){
+        app.log('refresh totals');
+      
+
+      },
       init:function(){
         var _this = this;
         app.update_active('totals');
