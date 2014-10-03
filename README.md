@@ -18,10 +18,12 @@ systems.
 [Ultimate Totals Git Page](http://feardread.github.io/UltimateTotals)
 
 # Technolegy Used
-  - Jquery
-  - Requirejs
-  - Backbone
-  - Underscore
+  - [TideSDK](http://www.tidesdk.org)
+  - [jQuery](http://jquery.org)
+  - [jQuery UI](http://jqueryui.com)
+  - [Requirejs](http://requirejs.org)
+  - [Backbone](http://backbonejs.org)
+  - [Underscore](http://underscorejs.org)
 
 ## Getting started ##
 
