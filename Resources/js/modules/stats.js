@@ -28,12 +28,9 @@ define('stats',[
               _this.load_ranks();
               break;
             case 2:
-              _this.load_season();
-              break;
-            case 3:
               _this.load_schedule();
               break;
-            case 4:
+            case 3:
               _this.load_injuries();
               break;
           }
