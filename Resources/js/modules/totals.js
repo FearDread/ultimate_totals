@@ -131,6 +131,7 @@ define('totals',[
             rows.next();
           } while(rows.isValidRow());
         }
+        tbl.tablesorter();
       },
       display_totals:function(){
         var div = $('.tdialog'); 

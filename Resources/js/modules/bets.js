@@ -2,7 +2,8 @@ define('betting',[
   'app',
   'bet',
   'bets',
-  'libs/jquery/jquery-ui.min'
+  'libs/jquery/jquery-ui.min',
+  'libs/jquery/plugins/jquery.tablesorter.min'
 ],function(app, Bet, Bets){
 
     return betting = {
@@ -64,6 +65,7 @@ define('betting',[
           } while(rows.isValidRow());
         }
 
+        tbl.tablesorter();
         tbl.bind('click', function(_e){
           _e.stopPropagation();
           var target = $(_e.target);
