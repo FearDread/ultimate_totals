@@ -48,6 +48,11 @@
     border-bottom-left-radius:5px;
   }.totals-table tr:hover td{
     background-color:#91daf2;
+    background:#91daf2;
+  }
+  .totals-table tr td:hover{
+    background-color:#91daf2;
+    background:#91daf2;
   }
   .totals-table th{
     padding: 7px; 
@@ -153,8 +158,6 @@
         .stats-table tr:nth-child(odd){ background-color:#e5e5e5; }
         .stats-table tr:nth-child(even)    { background-color:#ffffff; }.stats-table td{
           vertical-align:middle;
-          
-          
           border:1px solid #000000;
           border-width:0px 1px 1px 0px;
           text-align:left;

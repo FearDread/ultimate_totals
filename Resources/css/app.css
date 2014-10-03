@@ -497,11 +497,27 @@ font-size: 12px;
   margin-bottom: 20px;
 }
 .select-backdrop {
-  width:70px;
-  height:50px;
+  width:75px;
+  height:80px;
   background: #000;
   color: #fff;
   position:absolute;
+  border-radius:3px;
+}
+.select-backdrop ul {
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+.select-backdrop ul li {
+  padding:5px;
+  color: #FFF;
+  text-align:center;
+  font-size:13px;
+}
+.select-backdrop ul li:hover{
+  background: #FFF;
+  color: #000;
 }
 .footer p {
   font-size: 10px;
