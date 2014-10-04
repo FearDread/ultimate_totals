@@ -325,8 +325,8 @@ font-size: 12px;
   background-repeat: no-repeat;
   background-position: 170px;
   color: #FFF;
-  border-top-left-radius:12px;
-  border-bottom-left-radius:12px;
+  border-top-left-radius:15px;
+  border-bottom-left-radius:15px;
   padding:7px;
   position:absolute;
   width:190px;
@@ -344,7 +344,7 @@ font-size: 12px;
   margin-bottom: 5px;
   -webkit-box-shadow:none;
   box-shadow:none;
-  border-radius:12px;
+  border-radius:15px;
   border:1px solid #CCC;
 }
 
