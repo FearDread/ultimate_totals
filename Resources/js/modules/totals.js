@@ -296,8 +296,6 @@ define('totals',[
       },
       refresh:function(){
         app.log('refresh totals');
-      
-
       },
       init:function(){
         var _this = this;

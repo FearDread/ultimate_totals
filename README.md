@@ -9,7 +9,7 @@ process is simplified with an intuitive interface and large help database.
 
 ## Documentation ##
 
-This is a single page javascript application using the TideSDK framwork to compile
+This is a single page javascript application using the TideSDK framework to compile
 it into a native desktop application.  Can be ran in Linux, Windows, and Mac OSX operating
 systems.
 

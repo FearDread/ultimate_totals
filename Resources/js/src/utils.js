@@ -2,8 +2,7 @@
  * @title: Utilities module 
  * @author: Garrett Haptonstall
 *---------------------------------*/
-define(['utils'], 
-  function(utils){
+define(['utils'],function(utils){
 
     return utils = {
       log:function(message){
@@ -47,31 +46,28 @@ define(['utils'],
           return avg;
         }
       },
-      parse_obj:function(Object){
-      
-      },
-      get_keys:function(Object){
-        var Array = []
-        for(var k in Object){
-          if(!Object.hasOwnProperty(k)){
+      get_keys:function(obj){
+        var arr = []
+        for(var k in obj){
+          if(!obj.hasOwnProperty(k)){
             continue
           } 
-          Array.push(k)
+          arr.push(k)
         }
-        return Array;
+        return arr;
       },
       scroll_top:function(to){
         var mark = to.offset();
         $('html, body').animate({scrollTop:mark.top - 50}, 'slow');
       },
-      size:function(Object){
-        var Number = 0, key;
-        for(key in Object){
-          if(Object.hasOwnProperty(key)){
+      size:function(obj){
+        var num = 0, key;
+        for(key in obj){
+          if(obj.hasOwnProperty(key)){
             size++; 
           }
         }
-        return Number; 
+        return num; 
       }
     }
   }
