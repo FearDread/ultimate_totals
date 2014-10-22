@@ -35,6 +35,18 @@ define('stats',[
               break;
           }
         });
+
+        $('.print').bind('click', function(_e){
+          _e.preventDefault();
+          var win = app.window;
+          var div = $(this).parent('div').attr('id');
+          app.log(win); 
+          return;
+          // revisit //
+          win.focus();
+          win.print();
+          win.close();
+        });
       },
       load_ranks:function(){
         var _this = this,
