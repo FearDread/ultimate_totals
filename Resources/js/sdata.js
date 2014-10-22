@@ -1,7 +1,7 @@
 /* Sports Data Object
  * @desc simple object that returns ajax promises with sdata xml
  */
-var sdata = function(){
+var sportsData = function(){
   return {
     urls:{
       ranks:'https://api.sportsdatallc.org/nba-t3/seasontd/2013/reg/rankings.xml?api_key=395ykxy34yqan3txm5zaqv6u',

@@ -39,7 +39,7 @@ define('app',[
       },
       get_data:function(prop){
         this.loader.start();
-        var sd = new sdata();
+        var sd = new sportsData();
         var func = 'get_' + prop;
 
         if(this[prop] == null){
