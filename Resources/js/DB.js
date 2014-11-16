@@ -1,7 +1,6 @@
 /* Author: Garrett Haptonstall
  * Wrapper for Ti.Database */
 define(['DB'],function(){
-
   return DB = {
     db:Ti.Database.openFile(Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDataDirectory(),'ut_dev.db')),
     create:function(){
