@@ -1,0 +1,73 @@
+.single-page
+  .page-title
+    span
+      i.fa.fa-paper-plane.fa-3x
+    h2 Contact
+    p.menu-desc Way to Reach Me...
+  .page-info.container-fluid
+    .row.contact
+      .over-div
+      .sec-divider
+      h2.section-title Drop me a line
+      .row
+        .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.form-container
+          form#contactForm(action='#', method='post', name='contactForm')
+            fieldset
+              div
+                input#contactName(name='contactName', placeholder='Name_', size='35', type='text', value='')
+              div
+                input#contactEmail(name='contactEmail', placeholder='Email_', size='35', type='email', value='')
+              div
+                textarea#contactMessage(cols='5', name='contactMessage', placeholder='Message_', rows='5')
+              div
+                #message-warning
+                  | Error boy
+                button.submit
+                  | Send 
+                  i.fa.fa-angle-right
+                span#image-loader
+                  img(alt='', src='img/svg-loaders/mail-loader.svg')
+          #message-success
+            i.fa.fa-check
+            | Your message was sent, thank you!
+            br
+      .row.social
+        .col-md-6.address
+          .row.location
+            .col-md-12.col-lg-10.col-lg-offset-1
+              ul
+                li
+                  img(src='img/icons/location-map.svg', alt='')
+                  h4 Dhaka, Bangladesh
+                li
+                  img(src='img/icons/phone-icon.svg', alt='')
+                  h4 +880 123 456 789
+                li
+                  img(src='img/icons/email-icon.svg', alt='')
+                  h4 mail@rupok.me
+          .row.social-profiles
+            .col-md-12.col-lg-9.col-lg-offset-2
+              ul
+                li
+                  a(href='#')
+                    i.fa.fa-facebook.fa-2x
+                li
+                  a(href='#')
+                    i.fa.fa-twitter.fa-2x
+                li
+                  a(href='#')
+                    i.fa.fa-google-plus.fa-2x
+                li
+                  a(href='#')
+                    i.fa.fa-github.fa-2x
+                li
+                  a(href='#')
+                    i.fa.fa-dribbble.fa-2x
+                li
+                  a(href='#')
+                    i.fa.fa-slideshare.fa-2x
+        .col-md-6.map-container
+          #map
+
+      include includes/footer
+

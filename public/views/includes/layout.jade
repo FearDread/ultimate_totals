@@ -1,0 +1,34 @@
+!!!
+html
+  head
+    meta(charset='UTF-8')  
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')  
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+
+    title Garrett Haptonstall | ghap.me 
+    link(rel='shortcut icon', href='img/favicon.ico')
+
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
+
+    link(rel='stylesheet', href='/css/site.css')
+    link(rel='stylesheet', href='/css/mobile.css')
+
+  body
+    include loader
+
+    .page-container
+      block content
+
+      a.page-close(href='#') Close
+      a.page-scroll(href='#') Scroll
+
+    script(src='/js/modernizr.js')
+    script(src='/js/jquery/jquery.min.js')
+    script(src='/js/guerrilla/guerrilla-ui.min.js')
+
+    // main application script
+    script(src='/js/app.js')
+
+    block js
+              
